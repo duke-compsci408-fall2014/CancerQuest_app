@@ -16,7 +16,7 @@ namespace XamarinStore
 {
 	class ProductDetailsFragment : Fragment, ViewTreeObserver.IOnGlobalLayoutListener
 	{
-		ImageView productImage;
+		//ImageView productImage;
 		int currentIndex = 0;
 		Product currentProduct;
 		bool shouldAnimatePop;
@@ -60,7 +60,7 @@ namespace XamarinStore
 		{
 			base.OnViewCreated (view, savedInstanceState);
 
-			productImage = View.FindViewById<ImageView> (Resource.Id.productImage);
+			//productImage = View.FindViewById<ImageView> (Resource.Id.productImage);
 			
 			sizeSpinner = View.FindViewById<Spinner> (Resource.Id.productSize);
 
@@ -101,7 +101,7 @@ namespace XamarinStore
 		public override void OnStart ()
 		{
 			base.OnStart ();
-			AnimateImages ();
+			//AnimateImages ();
 		}
 
 		public override void OnStop ()
@@ -141,17 +141,17 @@ namespace XamarinStore
 			if (images.Length == 1) {
 				//No need to await the change
 				#pragma warning disable 4014
-				Images.SetImageFromUrlAsync (productImage, Product.ImageForSize (images [0], Images.ScreenWidth));
+				//Images.SetImageFromUrlAsync (productImage, Product.ImageForSize (images [0], Images.ScreenWidth));
 				#pragma warning restore 4014
 				return;
 			}
 
-			productImage.ViewTreeObserver.AddOnGlobalLayoutListener (this);
+			//productImage.ViewTreeObserver.AddOnGlobalLayoutListener (this);
 		}
 
 		public async void OnGlobalLayout ()
 		{
-			productImage.ViewTreeObserver.RemoveGlobalOnLayoutListener (this);
+			//productImage.ViewTreeObserver.RemoveGlobalOnLayoutListener (this);
 
 			const int DeltaX = 100;
 
@@ -159,14 +159,14 @@ namespace XamarinStore
 			var img2 = Images.FromUrl (Product.ImageForSize (images [1], Images.ScreenWidth));
 
 			productDrawable = new KenBurnsDrawable (Color.DarkBlue);
-			productDrawable.FirstBitmap = await img1;
-			productDrawable.SecondBitmap = await img2;
-			productImage.SetImageDrawable (productDrawable);
+			//productDrawable.FirstBitmap = await img1;
+			//productDrawable.SecondBitmap = await img2;
+			//productImage.SetImageDrawable (productDrawable);
 			currentIndex++;
 
 			var evaluator = new MatrixEvaluator ();
 			var finalMatrix = new Matrix ();
-			finalMatrix.SetTranslate (-DeltaX, -(float)productDrawable.FirstBitmap.Height / 1.3f + (float)productImage.Height);
+			finalMatrix.SetTranslate (-DeltaX, 0);
 			finalMatrix.PostScale (1.27f, 1.27f);
 			kenBurnsMovement = ValueAnimator.OfObject (evaluator, new Matrix (), finalMatrix);
 			kenBurnsMovement.Update += (sender, e) => productDrawable.SetMatrix ((Matrix)e.Animation.AnimatedValue);

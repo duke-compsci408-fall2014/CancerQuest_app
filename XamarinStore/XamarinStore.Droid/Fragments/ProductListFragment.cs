@@ -24,6 +24,7 @@ namespace XamarinStore
 			base.OnCreate (savedInstanceState);
 			RetainInstance = true;
 			SetHasOptionsMenu (true);
+
 		}
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -119,24 +120,24 @@ namespace XamarinStore
 					convertView.Id = 0x60000000;
 				}
 				convertView.Id++;
-				var imageView = convertView.FindViewById<ImageView> (Resource.Id.productImage);
+				//var imageView = convertView.FindViewById<ImageView> (Resource.Id.productImage);
 				var nameLabel = convertView.FindViewById<TextView> (Resource.Id.productTitle);
 				var priceLabel = convertView.FindViewById<TextView> (Resource.Id.productPrice);
-				var progressView = convertView.FindViewById<ProgressBar> (Resource.Id.productImageSpinner);
+				//var progressView = convertView.FindViewById<ProgressBar> (Resource.Id.productImageSpinner);
 
 				var product = Products [position];
-				nameLabel.Text = product.Name;
-				priceLabel.Text = product.PriceDescription;
+				nameLabel.Text = product.Description;
+				priceLabel.Text = product.Name;
 
-				LoadProductImage (convertView, progressView, imageView, product);
+				//LoadProductImage (convertView, progressView, imageView, product);
 
 				if (((newItems >> position) & 1) == 0) {
 					newItems |= 1L << position;
 					var density = context.Resources.DisplayMetrics.Density;
-					convertView.TranslationY = 60 * density;
+					convertView.TranslationY = 0;
 					convertView.RotationX = 12;
 					convertView.ScaleX = 1.1f;
-					convertView.PivotY = 180 * density;
+					convertView.PivotY = 0;
 					convertView.PivotX = parent.Width / 2;
 					convertView.Animate ()
 						.TranslationY (0)
@@ -150,14 +151,7 @@ namespace XamarinStore
 				return convertView;
 			}
 
-			async void LoadProductImage (View mainView, ProgressBar progressView, ImageView imageView, Product product)
-			{
-				var currentId = mainView.Id;
-				progressView.Visibility = ViewStates.Visible;
-				imageView.SetImageResource (Android.Resource.Color.Transparent);
-				await Images.SetImageFromUrlAsync (imageView,product.ImageForSize (Images.ScreenWidth));
-				progressView.Visibility = ViewStates.Invisible;
-			}
+
 		}
 	}
 }

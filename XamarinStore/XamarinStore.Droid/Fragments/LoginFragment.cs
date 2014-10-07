@@ -20,6 +20,7 @@ namespace XamarinStore
 		public event Action LoginSucceeded = delegate {};
 
 		EditText password;
+		EditText email;
 		Button login;
 		ImageView imageView;
 
@@ -64,14 +65,15 @@ namespace XamarinStore
 			imageView = view.FindViewById<ImageView> (Resource.Id.imageView1);
 			LoadUserImage ();
 
-			var textView = view.FindViewById<EditText> (Resource.Id.email);
-			textView.Enabled = false;
-			textView.Text = XamarinAccountEmail;
-
+			//var textView = view.FindViewById<EditText> (Resource.Id.email);
+			//textView.Enabled = false;
+			//textView.Text = XamarinAccountEmail;
+			//textView = view.FindViewById<EditText> (Resource.Id.email);
+			email = view.FindViewById<EditText> (Resource.Id.email);
 			password = view.FindViewById<EditText> (Resource.Id.password);
 			login = view.FindViewById<Button> (Resource.Id.signInBtn);
 			login.Click += (object sender, EventArgs e) => {
-				Login(XamarinAccountEmail,password.Text);
+				Login(email.Text,password.Text);
 			};
 			return view;
 		}
@@ -87,7 +89,7 @@ namespace XamarinStore
 
 		// TODO: Enter your Xamarin account email address here
 		// If you do not have a Xamarin Account please sign up here: https://store.xamarin.com/account/register
-		readonly string XamarinAccountEmail = "becdotlai@gmail.com";
+		readonly string XamarinAccountEmail = "jo63@duke.edu";
 		async void Login (string username, string password)
 		{
 			var progressDialog = ProgressDialog.Show (this.Activity, "Please wait...", "Logging in", true);
@@ -98,7 +100,7 @@ namespace XamarinStore
 				LoginSucceeded ();
 			}
 			else 
-				Toast.MakeText (this.Activity, "Please verify your Xamarin account credentials and try again", ToastLength.Long).Show();
+				Toast.MakeText (this.Activity, "Please verify your account credentials and try again", ToastLength.Long).Show();
 
 			this.login.Enabled = true;
 			this.password.Enabled = true;

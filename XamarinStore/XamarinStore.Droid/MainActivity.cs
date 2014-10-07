@@ -9,7 +9,7 @@ using Android.Content.PM;
 
 namespace XamarinStore
 {
-	[Activity (Label = "Xamarin Store", MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait)]
+	[Activity (Label = "Cancer Quest", MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait)]
 	public class MainActivity : Activity
 	{
 		int baseFragment;

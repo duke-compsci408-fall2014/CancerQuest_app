@@ -51,6 +51,14 @@ namespace XamarinStore
 		List<Product> products;
 		public async Task<List<Product>> GetProducts()
 		{
+			Product a = new Product ();
+			a.Description = "What is the color of an MRI machine?";
+			a.Name = "Question 1";
+			Product b = new Product ();
+			b.Description = "Why is the color yellow so yellow?";
+			b.Name = "Question 2";
+			products.Add (a); products.Add (b);
+
 			if (products == null) {
 				products = await Task.Factory.StartNew (() => {
 					try {
