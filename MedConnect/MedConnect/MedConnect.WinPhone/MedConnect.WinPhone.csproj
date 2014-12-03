@@ -141,7 +141,7 @@
     <Content Include="Assets\Tiles\IconicTileSmall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <AndroidResource Include="Icon.png" />
+    <Content Include="Icon.png" />
     <Content Include="icon_brightness.png" />
     <Content Include="icon_calendar.png" />
     <Content Include="icon_compose.png" />
@@ -154,9 +154,9 @@
     <Content Include="icon_profle.png" />
     <Content Include="icon_search.png" />
     <Content Include="icon_upload.png" />
-    <AndroidResource Include="logo.png" />
-    <AndroidResource Include="logo2.png" />
-    <AndroidResource Include="logo3.png" />
+    <Content Include="logo.png" />
+    <Content Include="logo2.png" />
+    <Content Include="logo3.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />

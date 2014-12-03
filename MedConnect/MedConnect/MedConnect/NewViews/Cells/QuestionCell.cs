@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedConnect.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,12 @@ namespace MedConnect.NewViews
 {
     public class QuestionCell : ViewCell
     {
+        Question myQuestion;
+
         public QuestionCell()
         {
+            myQuestion = (Question)this.BindingContext;
+            
             var textLabel = new Label
             {
                 TextColor = Color.FromHex("#636363"),

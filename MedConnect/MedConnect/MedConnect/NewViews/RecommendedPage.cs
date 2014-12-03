@@ -27,6 +27,7 @@ namespace MedConnect.NewViews
             var listView = new ListView(); 	 
             listView.HasUnevenRows = true;
 			listView.SetBinding (ListView.ItemsSourceProperty, new Binding ("RecommendedQuestions"));
+           
             listView.ItemTemplate = new DataTemplate(typeof(QuestionCell));
             listView.ItemTapped += (sender, args) =>
             {
