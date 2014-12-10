@@ -46,7 +46,6 @@
     <Compile Include="NewViews\LandingPage.cs" />
     <Compile Include="NewViews\LoginPage.cs" />
     <Compile Include="NewViews\MasterPage.cs" />
-    <Compile Include="NewViews\MenuPage.cs" />
     <Compile Include="NewViews\RecommendedPage.cs" />
     <Compile Include="NewViews\SearchPage.cs" />
     <Compile Include="NewViews\SettingsPage.cs" />
@@ -80,6 +79,9 @@
     <Compile Include="Models\Rating.cs" />
     <Compile Include="NewViews\Visits\AddVisitQuestion.cs" />
     <Compile Include="Models\Session.cs" />
+    <Compile Include="NewViews\MostHelpfulPage.cs" />
+    <Compile Include="NewViews\MostPopularPage.cs" />
+    <Compile Include="NewViews\RecentlyAddedPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Threading.Tasks">
