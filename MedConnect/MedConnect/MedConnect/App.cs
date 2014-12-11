@@ -19,16 +19,10 @@ namespace MedConnect
 
         public static Page GetMainPage()
         {
-<<<<<<< HEAD
 			Model = new MainViewModel ();
 			// load user from db
 
 			return new RootPage ();
-=======
-            //MasterPage mp = new MasterPage(new MainViewModel());
-			var loginPage = new LoginPage();
-            return loginPage;
->>>>>>> c83f9ed56d5c6fa5def6a4a841a97a4322bb601c
         }
     }
 }

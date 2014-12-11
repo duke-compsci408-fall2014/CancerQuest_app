@@ -43,13 +43,10 @@ namespace MedConnect.NewViews.Visits
 				var visit = args.Item as Visit;
 				if (visit == null) return;
 
-<<<<<<< HEAD
 				var modalPage = new VisitQuestionsPage(visit);
 				Navigation.PushModalAsync(modalPage);
-=======
-				ContentPage visitPage = new VisitQuestionsPage(_masterPage, visit);
-				_masterPage.setDetailPage(visitPage); 
->>>>>>> c83f9ed56d5c6fa5def6a4a841a97a4322bb601c
+				App.MasterPage.setDetailPage(modalPage); 
+
 				listView.SelectedItem = null;
 			};
 
@@ -61,7 +58,7 @@ namespace MedConnect.NewViews.Visits
 
             addVisitsButton.Clicked += (sender, args) =>
             {
-				var modalPage = new AddVisitPage(_masterPage);
+				var modalPage = new AddVisitPage();
 				Navigation.PushModalAsync(modalPage);
             };
 
@@ -72,18 +69,15 @@ namespace MedConnect.NewViews.Visits
                 Children = { header, listView, addVisitsButton}
             };
         }
-<<<<<<< HEAD
 
 		public async void HandleAddVisit()
 		{
-			int userID = App.MasterPage.MainView.User.id;
-			App.MasterPage.MainView._visitsViewModel.createVisit (userID);
+			int userID = App.Model.User.id;
+            // no name
+			//App.MasterPage.MainView._visitsViewModel.createVisit (userID);
 			await DisplayAlert("Visit Created", "New Visit created!", "OK");
-            
 		}
-=======
-	
->>>>>>> c83f9ed56d5c6fa5def6a4a841a97a4322bb601c
+
         private void visitPage_Appearing(object sender, EventArgs args)
         {
             App.MasterPage.MainView.getVisits();

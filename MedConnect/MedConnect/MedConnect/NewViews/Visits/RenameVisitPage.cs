@@ -5,12 +5,9 @@ namespace MedConnect.NewViews.Visits
 {
 	public class RenameVisitPage : ContentPage 
 	{
-		MasterPage _masterPage; 
 
-		public RenameVisitPage (MasterPage masterPage)
+		public RenameVisitPage ()
 		{
-			_masterPage = masterPage; 
-
 			var header = new HeaderElement ("Rename Visit"); 
 
 			var renameVisitEntry = new Entry

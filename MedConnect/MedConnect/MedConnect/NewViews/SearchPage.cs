@@ -48,7 +48,7 @@ namespace MedConnect.NewViews
             Content = new StackLayout
             {
                 Padding = new Thickness(20, 20, 20, 20),
-				Children = { header, new TabsHeader(_masterPage), searchBar, _scrollView } 
+				Children = { header, new TabsHeader(), searchBar, _scrollView } 
             };
         }
 

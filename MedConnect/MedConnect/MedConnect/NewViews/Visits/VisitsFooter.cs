@@ -54,7 +54,7 @@ namespace MedConnect.NewViews.Visits
             var renameTapRecognizer = new TapGestureRecognizer();
             renameTapRecognizer.Tapped += (s, e) =>
             {
-				var modalPage = new RenameVisitPage(_masterPage);
+				var modalPage = new RenameVisitPage();
 				Navigation.PushModalAsync(modalPage);
             };
             renameTab.GestureRecognizers.Add(renameTapRecognizer);
