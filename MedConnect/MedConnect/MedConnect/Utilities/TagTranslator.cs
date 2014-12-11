@@ -41,6 +41,7 @@ namespace MedConnect
             var temp = await _webService.getTags();
             allCategories = temp;
 			//initializeCategoryDict();
+            System.Diagnostics.Debug.WriteLine("hello hi");
         }
 
         private void initializeCategoryDict()
