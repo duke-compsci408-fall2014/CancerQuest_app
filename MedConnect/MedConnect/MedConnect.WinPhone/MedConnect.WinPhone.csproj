@@ -155,6 +155,10 @@
     <Content Include="logo.png" />
     <Content Include="logo2.png" />
     <Content Include="logo3.png" />
+<<<<<<< HEAD
+
+=======
+>>>>>>> 02b7992f007fa6729476297e0159bef9371f5871
     <Content Include="navigation.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
