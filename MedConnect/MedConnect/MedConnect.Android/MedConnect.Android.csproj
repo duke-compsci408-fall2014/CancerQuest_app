@@ -112,6 +112,7 @@
     <AndroidResource Include="Resources\Drawable\tutorial.png" />
     <AndroidResource Include="Resources\Drawable\navigation.png" />
     <AndroidResource Include="Resources\Drawable\add_question.png" />
+    <AndroidResource Include="Resources\Drawable\splash_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MedConnect\MedConnect.csproj">

@@ -30,8 +30,8 @@ namespace MedConnect.NewViews
             var recommendedTapRecognizer = new TapGestureRecognizer();
             recommendedTapRecognizer.Tapped += (s, e) =>
             {
-                App.MasterPage.Master = App.MasterPage.getMasterContentPage();
-                App.MasterPage.Detail = new RecommendedPage();
+				ContentPage recommended = new RecommendedPage();
+				App.MasterPage.setDetailPage(recommended); 
             };
             recommendedTab.GestureRecognizers.Add(recommendedTapRecognizer);
 
@@ -52,8 +52,8 @@ namespace MedConnect.NewViews
             var browseTapRecognizer = new TapGestureRecognizer();
             browseTapRecognizer.Tapped += (s, e) =>
             {
-                App.MasterPage.Master = App.MasterPage.getMasterContentPage();
-                App.MasterPage.Detail = new BrowsePage();
+				ContentPage browsePage = new BrowsePage();
+				App.MasterPage.setDetailPage(browsePage); 
             };
             browseTab.GestureRecognizers.Add(browseTapRecognizer);
 
@@ -74,8 +74,8 @@ namespace MedConnect.NewViews
             var searchTapRecognizer = new TapGestureRecognizer();
             searchTapRecognizer.Tapped += (s, e) =>
             {
-                App.MasterPage.Master = App.MasterPage.getMasterContentPage();
-                App.MasterPage.Detail = new SearchPage();
+				ContentPage searchPage = new SearchPage();
+				App.MasterPage.setDetailPage(searchPage); 
             };
             searchTab.GestureRecognizers.Add(searchTapRecognizer);
 
@@ -91,7 +91,5 @@ namespace MedConnect.NewViews
             Children.Add(searchTab);
 
         }
-
-
     }
 }

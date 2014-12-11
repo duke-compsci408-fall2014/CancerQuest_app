@@ -159,6 +159,10 @@
     <BundleResource Include="Resources\icon_120.png" />
     <BundleResource Include="Resources\icon_114.png" />
     <BundleResource Include="Resources\icon_57.png" />
+    <BundleResource Include="Resources\tutorial.png" />
+    <BundleResource Include="Resources\navigation.png" />
+    <BundleResource Include="Resources\add_question.png" />
+    <BundleResource Include="Resources\splash_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\icon_profle.png" />

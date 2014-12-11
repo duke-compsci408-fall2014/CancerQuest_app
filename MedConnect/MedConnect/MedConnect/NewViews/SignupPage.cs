@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using MedConnect.ViewModels;
-using MedConnect.Models; 
+using MedConnect.Models;
+using MedConnect.Utilies;
 
 namespace MedConnect.NewViews
 {
@@ -14,6 +15,8 @@ namespace MedConnect.NewViews
 
 		public SignupPage()
         {
+            TagTranslator tt = new TagTranslator(new WebService());
+
             var header = new HeaderElement("Sign Up");
 
             var usernameEntry = new Entry

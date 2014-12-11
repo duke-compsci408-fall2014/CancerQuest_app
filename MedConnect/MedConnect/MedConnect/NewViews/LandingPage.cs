@@ -25,24 +25,24 @@ namespace MedConnect.NewViews
             var discoverTapRecognizer = new TapGestureRecognizer();
             discoverTapRecognizer.Tapped += (s, e) =>
             {
-                //App.MasterPage.Master = App.MasterPage.getMasterContentPage();
-				App.MasterPage.Detail = new RecommendedPage(); 
+				ContentPage recommendedPage = new RecommendedPage();
+				App.MasterPage.setDetailPage(recommendedPage); 
             };
             discoverEntry.GestureRecognizers.Add(discoverTapRecognizer);
 
             var libraryTapRecognizer = new TapGestureRecognizer();
             libraryTapRecognizer.Tapped += (s, e) =>
             {
-                //App.MasterPage.Master = App.MasterPage.getMasterContentPage();
-				App.MasterPage.Detail = new LibraryPage();
+				ContentPage libraryPage = new LibraryPage();
+				App.MasterPage.setDetailPage(libraryPage); 
             };
             libraryEntry.GestureRecognizers.Add(libraryTapRecognizer);
 
             var visitsTapRecognizer = new TapGestureRecognizer();
             visitsTapRecognizer.Tapped += (s, e) =>
             {
-                //App.MasterPage.Master = App.MasterPage.getMasterContentPage();
-				App.MasterPage.Detail = new VisitsPage();
+				ContentPage visitsPage = new VisitsPage();
+				App.MasterPage.setDetailPage(visitsPage); 
             };
             visitsEntry.GestureRecognizers.Add(visitsTapRecognizer);
 

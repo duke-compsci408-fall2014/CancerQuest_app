@@ -22,16 +22,8 @@ namespace MedConnect.NewViews
             var listView = new ListView();
             listView.HasUnevenRows = true;
 			listView.SetBinding (ListView.ItemsSourceProperty, new Binding ("LibraryQuestions"));
-            listView.ItemTemplate = new DataTemplate(typeof(QuestionCell));
-            listView.ItemTapped += (sender, args) =>
-            {
-                var question = args.Item as Question;
-                if (question == null) return;
+            listView.ItemTemplate = new DataTemplate(typeof(LibraryCell));
 
-                var modalPage = new EditQuestionPage(App.MasterPage, question.ID);
-                Navigation.PushModalAsync(modalPage);
-                listView.SelectedItem = null;
-            };
             var header = new HeaderElement("My Library");
 
             var addQuestionButton = new Button
@@ -46,26 +38,13 @@ namespace MedConnect.NewViews
                 listView.SelectedItem = null;
             };
 
-            _mainView = new StackLayout
+            Content = new StackLayout
             {
                 Padding = new Thickness(20, 20, 20, 20),
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 Children = { header, listView, addQuestionButton }
             };
-
-			var loading = new ActivityIndicator 
-			{
-				IsRunning = true
-			}; 
-
-			var loadingView = new StackLayout 
-			{
-				Padding = new Thickness(20, 20, 20, 20),
-				VerticalOptions = LayoutOptions.FillAndExpand,
-				Children = { header, loading, addQuestionButton }
-			};
-
-			Content = loadingView; 
+					
 			this.Appearing += LibraryPage_Appearing;
         }
 

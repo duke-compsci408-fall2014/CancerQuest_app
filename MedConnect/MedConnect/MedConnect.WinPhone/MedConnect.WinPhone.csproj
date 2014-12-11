@@ -144,9 +144,6 @@
     </Content>
     <Content Include="Icon.png" />
     <Content Include="icon_brightness.png" />
-    <Content Include="icon_calendar.png" />
-    <Content Include="icon_compose.png" />
-    <Content Include="icon_download.png" />
     <Content Include="icon_expand.png" />
     <Content Include="icon_heart.png" />
     <Content Include="icon_library.png" />
@@ -158,6 +155,10 @@
     <Content Include="logo.png" />
     <Content Include="logo2.png" />
     <Content Include="logo3.png" />
+<<<<<<< HEAD
+
+=======
+>>>>>>> 02b7992f007fa6729476297e0159bef9371f5871
     <Content Include="navigation.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
@@ -166,6 +167,10 @@
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
     <Content Include="tutorial.png" />
+    <Content Include="splash_icon.png" />
+    <Content Include="icon_calendar.png" />
+    <Content Include="icon_compose.png" />
+    <Content Include="icon_download.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.resx">

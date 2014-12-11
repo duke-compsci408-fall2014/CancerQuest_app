@@ -8,7 +8,19 @@ namespace MedConnect
 	{
 		public SplashScreen ()
 		{
-			this.BackgroundColor = Color.Blue;
+			this.BackgroundColor = Color.White;
+
+			var image = new Image 
+			{
+				Source = "splash_icon.png",
+				WidthRequest = 300,
+				HeightRequest = 300
+			};
+
+			Content = new StackLayout {
+				HorizontalOptions = LayoutOptions.CenterAndExpand, 
+				Children = { image }
+			};
 
 			this.Appearing += (sender, args) =>
 			{

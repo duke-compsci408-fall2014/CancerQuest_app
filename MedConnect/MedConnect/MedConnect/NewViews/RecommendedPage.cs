@@ -27,23 +27,9 @@ namespace MedConnect.NewViews
 			this.BindingContext = App.MasterPage.MainView;
 
             var listView = new ListView(); 
-
-			/*if (Device.OS == TargetPlatform.iOS) {
-				listView.HasUnevenRows = false; 
-			} else {
-				listView.HasUnevenRows = true;
-			}*/
 			listView.HasUnevenRows = true; 
 			listView.SetBinding (ListView.ItemsSourceProperty, new Binding ("RecommendedQuestions"));
-           
             listView.ItemTemplate = new DataTemplate(typeof(QuestionCell));
-            listView.ItemTapped += (sender, args) =>
-            {
-                var question = args.Item as Question;
-                if (question == null) return;
-				HandleAddLibrary(question.ID);
-                listView.SelectedItem = null;
-            };
 
             var header = new HeaderElement("Recommended Questions");
 
@@ -55,7 +41,6 @@ namespace MedConnect.NewViews
             };
 
 			Content = mainLayout; 
-            
         }
 
 		public async void HandleAddLibrary(int questionID)
