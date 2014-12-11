@@ -33,7 +33,7 @@ namespace MedConnect.NewViews.Visits
             {
                 App.MasterPage.MainView.VisitsViewModel.deleteVisit(App.MasterPage.MainView.User.id, _visit.id);
 
-                Navigation.PushModalAsync(new VisitsPage());
+                Navigation.PopModalAsync();
             };
             deleteTab.GestureRecognizers.Add(deleteTapRecognizer);
 

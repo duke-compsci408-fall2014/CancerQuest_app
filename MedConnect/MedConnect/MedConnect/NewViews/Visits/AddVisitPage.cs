@@ -12,7 +12,7 @@ namespace MedConnect.NewViews
 
 			var visitNameEntry = new Entry
 			{
-				Text = "Name your visit"
+                Placeholder = "Name your visit"
 			};
 
 			var submitQuestionButton = new Button

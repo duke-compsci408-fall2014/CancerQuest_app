@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using MedConnect.ViewModels;
-using MedConnect.Utilities; 
 
 namespace MedConnect.NewViews
 {
