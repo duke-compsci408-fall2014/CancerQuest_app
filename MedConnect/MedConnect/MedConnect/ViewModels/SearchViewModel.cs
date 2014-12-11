@@ -37,13 +37,15 @@ namespace MedConnect.ViewModels
             _results = new ObservableCollection<Question>();
         }
 
-        public async void getSearchResults(string query)
+        public async Task<bool> getSearchResults(string query)
         {
             Results.Clear();
 
             var tmp = await _webService.getSearchResults(query);
             Results = tmp;
 			_webService.addQuestionInfo (Results);
+
+            return true;
         }
 
 

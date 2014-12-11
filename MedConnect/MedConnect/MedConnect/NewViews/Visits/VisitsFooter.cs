@@ -31,7 +31,7 @@ namespace MedConnect.NewViews.Visits
             var deleteTapRecognizer = new TapGestureRecognizer();
             deleteTapRecognizer.Tapped += (s, e) =>
             {
-                App.MasterPage.MainView._visitsViewModel.deleteVisit(App.MasterPage.MainView.User.id, _visit.id);
+                App.MasterPage.MainView.VisitsViewModel.deleteVisit(App.MasterPage.MainView.User.id, _visit.id);
 
                 Navigation.PushModalAsync(new VisitsPage());
             };

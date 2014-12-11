@@ -52,7 +52,7 @@ namespace MedConnect.NewViews
                 Text = "Cancel"
             };
 			App.MasterPage.MainView.getVisits();
-            this.BindingContext = App.MasterPage.MainView._visitsViewModel;
+            this.BindingContext = App.MasterPage.MainView.VisitsViewModel;
 
             var listView = new ListView();
             listView.HasUnevenRows = true;

@@ -135,10 +135,10 @@ namespace MedConnect.NewViews
 		public async void HandleSignUp(string username, string password, string email)
 		{
 			var result = await App.MasterPage.MainView.createUser (username, password, email);
-			System.Diagnostics.Debug.WriteLine (result.username);
 			if (result.username != "null") {
 				await DisplayAlert("Success!", "Welcome new user! ", "OK");
 			}
+            // login and pop to root
 		}
     }
 }

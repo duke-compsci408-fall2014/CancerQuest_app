@@ -233,20 +233,30 @@ namespace MedConnect.Utilies
 
 		public async void addQuestionInfo(ObservableCollection<Question> questions)
 		{
-			foreach (Question q in questions) {
-				string temp = "";
+		    try
+		    {
+		        foreach (Question q in questions)
+		        {
+		            string temp = "";
 
-				foreach (Tag t in q.Tags) {
-					temp = temp + " " + t.Text;
-				}
-				q.TagInfo = temp;
-			}
-			foreach (Question q in questions)
-			{
-				var rate = await getRating(q.ID);
-				q.HelpfulVotes = rate.helpful;
-				q.NotHelpfulVotes = rate.total - rate.helpful;
-			}
+		            foreach (Tag t in q.Tags)
+		            {
+		                temp = temp + ", " + t.Text;
+		            }
+		            q.TagInfo = temp;
+		        }
+		        foreach (Question q in questions)
+		        {
+		            var rate = await getRating(q.ID);
+		            q.HelpfulVotes = rate.helpful;
+		            q.NotHelpfulVotes = rate.total - rate.helpful;
+		        }
+		    }
+		    catch (Exception e)
+		    {
+		        // hide it
+		    }
+			
 		}
 
 	}

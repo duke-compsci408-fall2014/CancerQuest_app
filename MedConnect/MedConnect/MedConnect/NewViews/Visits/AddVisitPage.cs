@@ -52,7 +52,7 @@ namespace MedConnect.NewViews
 		public async void HandleAddVisit(string visitName)
 		{
 			int userID = App.Model.User.id;
-            App.Model._visitsViewModel.createVisit(userID, visitName);
+            App.Model.VisitsViewModel.createVisit(userID, visitName);
 			await DisplayAlert("Visit Created", "New Visit created!", "OK");
 		}
 	}

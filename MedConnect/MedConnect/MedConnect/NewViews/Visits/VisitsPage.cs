@@ -30,7 +30,7 @@ namespace MedConnect.NewViews.Visits
             Questions.Add(q1);
             Questions.Add(q2);
 
-			this.BindingContext = App.MasterPage.MainView._visitsViewModel;
+			this.BindingContext = App.MasterPage.MainView.VisitsViewModel;
 
             var listView = new ListView();
             listView.HasUnevenRows = true;
@@ -45,8 +45,7 @@ namespace MedConnect.NewViews.Visits
 
 				var modalPage = new VisitQuestionsPage(visit);
 				Navigation.PushModalAsync(modalPage);
-				App.MasterPage.setDetailPage(modalPage); 
-
+			    //App.MasterPage.Detail = modalPage; 
 				listView.SelectedItem = null;
 			};
 

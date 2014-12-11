@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MedConnect.Models;
+using MedConnect.ViewModels;
 using Xamarin.Forms;
 
 namespace MedConnect.NewViews
@@ -12,28 +13,44 @@ namespace MedConnect.NewViews
     /* 
      * The SearchPage 
      */
-    public class SearchPage : ContentPage
+    public class SearchPage : BaseContentPage
     {
-		MasterPage _masterPage; 
 		private ListView _listView; 
 		private ScrollView _scrollView;
 
+        public SearchViewModel ViewModel
+        {
+            get { return BindingContext as SearchViewModel; }
+            set { }
+        }
 
         public SearchPage()
         {
-			Title = "Search";           
+			Title = "Search";
+            BindingContext = App.Model.SearchViewModel;
 
             BackgroundColor = Color.FromHex("#C1C1C1");
             var header = new HeaderElement("Search");
+            
             _listView = new ListView();
-			_listView.IsVisible = false; 
+            _listView.HasUnevenRows = true;
+            _listView.SetBinding(ListView.ItemsSourceProperty, new Binding("Results"));
+            _listView.ItemTemplate = new DataTemplate(typeof(QuestionCell));
+            _listView.ItemTapped += (sender, args) =>
+            {
+                var question = args.Item as Question;
+                if (question == null) return;
+                HandleAddLibrary(question.ID);
+                _listView.SelectedItem = null;
+            };
 
             SearchBar searchBar = new SearchBar
             {
                 Placeholder = "Search for questions",
             };
 
-			_scrollView = new ScrollView (); 
+			_scrollView = new ScrollView ();
+            _scrollView.Content = new StackLayout { Children = { CreateLoadingIndicator(), _listView } };
 
             searchBar.SearchButtonPressed += (sender, args) =>
             {
@@ -52,22 +69,14 @@ namespace MedConnect.NewViews
             };
         }
 
-        public void HandleSearch(string searchQuery, ListView listview)
+        public async void HandleSearch(string searchQuery, ListView listview)
         {
-            App.MasterPage.MainView._searchViewModel.getSearchResults(searchQuery);
+            ViewModel.IsLoading = true;
 
-            this.BindingContext = App.MasterPage.MainView._searchViewModel;
-            listview.HasUnevenRows = true;
-            listview.SetBinding(ListView.ItemsSourceProperty, new Binding("Results"));
-            listview.ItemTemplate = new DataTemplate(typeof(QuestionCell));
-			_scrollView.Content = listview;
-            listview.ItemTapped += (sender, args) =>
-            {
-                var question = args.Item as Question;
-                if (question == null) return;
-                HandleAddLibrary(question.ID);
-                listview.SelectedItem = null;
-            };
+            await App.Model.SearchViewModel.getSearchResults(searchQuery);
+
+            
+            ViewModel.IsLoading = false;
         }
         public async void HandleAddLibrary(int questionID)
         {

@@ -61,9 +61,8 @@ namespace MedConnect.NewViews
             };
 
 			var loginForm = new StackLayout {
-				Children = { usernameEntry, passwordEntry, loginButton, signupButton }
+                Children = {CreateLoadingIndicator(), usernameEntry, passwordEntry, loginButton, signupButton }
 			};
-
 			var content = new ScrollView {
 				Content = new StackLayout
 	            {
@@ -73,8 +72,8 @@ namespace MedConnect.NewViews
 	                BackgroundColor = Color.FromHex("#FFFFFF")
 	            }
 			};
-			Content = content;
-			//Content = CreateLoadingIndicatorAbsoluteLayout (content);
+
+            Content = content;
 
             loginButton.Clicked += (sender, args) =>
             {
@@ -103,8 +102,8 @@ namespace MedConnect.NewViews
 		private async void HandleLogin(String username, String password) 
         {
 			var result = await App.Model.authenticate(username,password);
-			ViewModel.IsLoading = false;
 
+            ViewModel.IsLoading = false;
 			if(result != null) {
 				App.Model.getLibraryQuestions ();               
 				await Navigation.PopModalAsync();

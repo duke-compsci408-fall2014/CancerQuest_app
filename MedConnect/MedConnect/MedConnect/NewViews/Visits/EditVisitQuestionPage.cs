@@ -57,7 +57,7 @@ namespace MedConnect.NewViews
             {
                 System.Diagnostics.Debug.WriteLine("Question removed");
                 int userID = App.MasterPage.MainView.User.id;
-                App.MasterPage.MainView._visitsViewModel.removeVisitQuestion(userID,_visitID,_questionID);
+                App.MasterPage.MainView.VisitsViewModel.removeVisitQuestion(userID,_visitID,_questionID);
                 
                 Navigation.PopModalAsync();
             };

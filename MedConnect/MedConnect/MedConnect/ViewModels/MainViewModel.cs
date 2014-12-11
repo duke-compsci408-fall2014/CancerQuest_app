@@ -15,9 +15,13 @@ namespace MedConnect.ViewModels
 	public class MainViewModel : ViewModel
 	{
 		private WebService _webService;
-		public VisitsViewModel _visitsViewModel;
-        public SearchViewModel _searchViewModel;
-        public TagTranslator _tagTranslator;
+		public VisitsViewModel VisitsViewModel;
+
+        public SearchViewModel SearchViewModel;
+
+
+
+        public TagTranslator TagTranslator;
 
 		private ObservableCollection<Question> _recommendedQuestions;
 
@@ -68,8 +72,8 @@ namespace MedConnect.ViewModels
             _recommendedQuestions = new ObservableCollection<Question>();
 			_libraryQuestions = new ObservableCollection<Question>();
 
-			_visitsViewModel = new VisitsViewModel (_webService);
-            _searchViewModel = new SearchViewModel (_webService);
+			VisitsViewModel = new VisitsViewModel (_webService);
+            SearchViewModel = new SearchViewModel (_webService);
 			//test createUser
 			//createUser ("Kevin", "Test", "jon@jo.
 
@@ -124,7 +128,7 @@ namespace MedConnect.ViewModels
         }
 		public void getVisits()
 		{
-			_visitsViewModel.getVisits (User.id);
+			VisitsViewModel.getVisits (User.id);
 		}
 
 		public async void postLibrary(int questionID)

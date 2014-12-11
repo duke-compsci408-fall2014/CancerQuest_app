@@ -66,9 +66,9 @@ namespace MedConnect.NewViews
 			var response = await App.Model.postQuestion(questionText);
 
 			_postedQuestion = response;
-			App.Model._visitsViewModel.addVisitQuestion (App.User.id, _postedQuestion.ID, _visit.id);
+			App.Model.VisitsViewModel.addVisitQuestion (App.User.id, _postedQuestion.ID, _visit.id);
 			//on success do this later
-			App.Model._visitsViewModel.VisitQuestions.Add (_postedQuestion);
+			App.Model.VisitsViewModel.VisitQuestions.Add (_postedQuestion);
 
 		}
 	}

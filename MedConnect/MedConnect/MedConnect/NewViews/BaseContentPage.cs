@@ -8,13 +8,13 @@ namespace MedConnect
 		protected ActivityIndicator CreateLoadingIndicator()
 		{
 			var loadingIndicator = new ActivityIndicator {
-				HorizontalOptions = LayoutOptions.CenterAndExpand,
-				VerticalOptions = LayoutOptions.Start,
+                Color = Color.Blue,
 				Scale = 2
 			};
 
-			//loadingIndicator.SetBinding (IsVisible, "IsLoading");
+			loadingIndicator.SetBinding (ActivityIndicator.IsVisibleProperty, "IsLoading");
 			loadingIndicator.SetBinding (ActivityIndicator.IsRunningProperty, "IsLoading");
+
 			return loadingIndicator;
 		}
 

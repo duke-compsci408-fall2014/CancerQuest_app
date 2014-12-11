@@ -18,7 +18,7 @@ namespace MedConnect.NewViews
             this.Appearing += visitQuestionsPage_Appearing;
 			_visit = visit;
             BackgroundColor = Color.FromHex("#C1C1C1");
-			this.BindingContext = App.MasterPage.MainView._visitsViewModel;
+			this.BindingContext = App.MasterPage.MainView.VisitsViewModel;
 
             var listView = new ListView();
             listView.HasUnevenRows = true;
@@ -59,7 +59,7 @@ namespace MedConnect.NewViews
 
         void visitQuestionsPage_Appearing(object sender, EventArgs e)
         {
-            App.MasterPage.MainView._visitsViewModel.getVisitQuestions(App.MasterPage.MainView.User.id, _visit.id);
+            App.MasterPage.MainView.VisitsViewModel.getVisitQuestions(App.MasterPage.MainView.User.id, _visit.id);
         }
 
     }
