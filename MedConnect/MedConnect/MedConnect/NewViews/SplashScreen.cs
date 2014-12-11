@@ -16,12 +16,12 @@ namespace MedConnect
 				WidthRequest = 300,
 				HeightRequest = 300
 			};
-
+            /*
 			Content = new StackLayout {
 				HorizontalOptions = LayoutOptions.CenterAndExpand, 
 				Children = { image }
 			};
-
+            */
 			this.Appearing += (sender, args) =>
 			{
 				if (App.User == null) {
