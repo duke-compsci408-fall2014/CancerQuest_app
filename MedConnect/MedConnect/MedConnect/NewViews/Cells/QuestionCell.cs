@@ -68,7 +68,6 @@ namespace MedConnect.NewViews
 
 			if (Device.OS == TargetPlatform.iOS) {
 				viewLayout.Padding = new Thickness (10, 5, 5, 5);
-				//viewLayout.MinimumHeightRequest = 100;
 			}
 
             var mainLayout = new StackLayout()
@@ -85,5 +84,13 @@ namespace MedConnect.NewViews
             
 			View = mainLayout; 
         }
+			
+		protected override void OnBindingContextChanged ()
+		{
+			base.OnBindingContextChanged ();
+			if (Device.OS == TargetPlatform.iOS) { // don't bother on the other platforms
+				Height = 500; 
+			}
+		}
     }
 }

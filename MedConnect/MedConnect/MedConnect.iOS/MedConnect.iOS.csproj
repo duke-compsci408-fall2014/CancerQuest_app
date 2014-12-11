@@ -159,8 +159,14 @@
     <BundleResource Include="Resources\logo.png" />
     <BundleResource Include="Resources\logo2.png" />
     <BundleResource Include="Resources\logo3.png" />
+    <BundleResource Include="Resources\icon_120.png" />
+    <BundleResource Include="Resources\icon_114.png" />
+    <BundleResource Include="Resources\icon_57.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\icon_profle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Icon.png" />
   </ItemGroup>
 </Project>

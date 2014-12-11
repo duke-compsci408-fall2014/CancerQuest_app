@@ -28,8 +28,14 @@ namespace MedConnect.NewViews
 
 			this.BindingContext = _masterPage.MainView;
 
-            var listView = new ListView(); 	 
-            listView.HasUnevenRows = true;
+            var listView = new ListView(); 
+
+			/*if (Device.OS == TargetPlatform.iOS) {
+				listView.HasUnevenRows = false; 
+			} else {
+				listView.HasUnevenRows = true;
+			}*/
+			listView.HasUnevenRows = true; 
 			listView.SetBinding (ListView.ItemsSourceProperty, new Binding ("RecommendedQuestions"));
             listView.ItemTemplate = new DataTemplate(typeof(QuestionCell));
             listView.ItemTapped += (sender, args) =>
