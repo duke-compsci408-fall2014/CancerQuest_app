@@ -14,12 +14,14 @@ namespace MedConnect.NewViews
         {            
             Title = "Recently Added Questions";
             BackgroundColor = Color.FromHex("#C1C1C1");
+            
+            App.Model.getSortedQuestions("recent");
 
-            this.BindingContext = App.MasterPage.MainView;
+            this.BindingContext = App.Model;
 
             var listView = new ListView();
             listView.HasUnevenRows = true;
-            //listView.SetBinding(ListView.ItemsSourceProperty, new Binding("RecommendedQuestions"));
+            listView.SetBinding(ListView.ItemsSourceProperty, new Binding("RecommendedQuestions"));
             listView.ItemTemplate = new DataTemplate(typeof(QuestionCell));
             listView.ItemTapped += (sender, args) =>
             {

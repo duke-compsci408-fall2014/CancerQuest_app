@@ -28,6 +28,7 @@ namespace MedConnect.ViewModels
             {
                 _results = value;
                 OnPropertyChanged("Results");
+                OnPropertyChanged();
             }
         }
 

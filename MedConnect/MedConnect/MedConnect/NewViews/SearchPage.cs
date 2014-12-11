@@ -56,9 +56,6 @@ namespace MedConnect.NewViews
             {
                 string searchQuery = searchBar.Text;
                 System.Diagnostics.Debug.WriteLine(searchQuery);
-				_scrollView.Content = new ActivityIndicator {
-					IsRunning = true
-				}; 
                 HandleSearch(searchQuery, _listView);
             };
 
@@ -72,10 +69,7 @@ namespace MedConnect.NewViews
         public async void HandleSearch(string searchQuery, ListView listview)
         {
             ViewModel.IsLoading = true;
-
             await App.Model.SearchViewModel.getSearchResults(searchQuery);
-
-            
             ViewModel.IsLoading = false;
         }
         public async void HandleAddLibrary(int questionID)
