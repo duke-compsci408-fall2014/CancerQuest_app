@@ -56,13 +56,16 @@
     <Compile Include="NewViews\SplashScreen.cs" />
     <Compile Include="NewViews\TabsHeader.cs" />
     <Compile Include="NewViews\TutorialPage.cs" />
+    <Compile Include="NewViews\Visits\AddVisitPage.cs" />
     <Compile Include="NewViews\Visits\BrowseVisits.cs" />
+    <Compile Include="NewViews\Visits\RenameVisitPage.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\LocalDatabase.cs" />
     <Compile Include="Utilities\WebService.cs" />
     <Compile Include="Models\Visit.cs" />
     <Compile Include="Models\Basket.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Utilities\Constants.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
