@@ -131,12 +131,12 @@ namespace MedConnect.Utilies
 			return response.Content;
 		}
 
-		public async Task<Visit> createVisit(int userID)
+		public async Task<Visit> createVisit(int userID, string visitName)
 		{
 			string addr = "/users/" + userID + "/appointments";
 			var request = new RestRequest(addr, HttpMethod.Post);
 			addHeader (request);
-            request.AddQueryString("name", "Test Appointment");
+            request.AddQueryString("name", visitName);
 
 
 			var response = await _rc.SendAsync<Visit>(request);

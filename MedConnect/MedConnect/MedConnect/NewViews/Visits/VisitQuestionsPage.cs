@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using MedConnect.Models; 
+using MedConnect.NewViews.Visits;
 
 namespace MedConnect.NewViews
 {
@@ -20,9 +21,6 @@ namespace MedConnect.NewViews
             _masterPage = masterPage;
 			_visit = visit;
             BackgroundColor = Color.FromHex("#C1C1C1");
-
-			//change lol 
-			
 
 			this.BindingContext = _masterPage.MainView._visitsViewModel;
 

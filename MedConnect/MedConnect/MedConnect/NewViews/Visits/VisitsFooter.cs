@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms; 
 
-namespace MedConnect.NewViews
+namespace MedConnect.NewViews.Visits
 {
     public class VisitsFooter : StackLayout
     {
@@ -57,7 +57,8 @@ namespace MedConnect.NewViews
             var renameTapRecognizer = new TapGestureRecognizer();
             renameTapRecognizer.Tapped += (s, e) =>
             {
-
+				var modalPage = new RenameVisitPage(_masterPage);
+				Navigation.PushModalAsync(modalPage);
             };
             renameTab.GestureRecognizers.Add(renameTapRecognizer);
 

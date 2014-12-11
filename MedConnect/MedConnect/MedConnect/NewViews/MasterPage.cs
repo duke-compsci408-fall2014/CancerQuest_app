@@ -10,6 +10,7 @@ using MedConnect.ViewModels;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Linq.Expressions;
+using MedConnect.NewViews.Visits;
 
 namespace MedConnect.NewViews
 {

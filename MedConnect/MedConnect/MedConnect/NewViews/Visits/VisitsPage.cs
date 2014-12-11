@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using MedConnect.Models; 
 using Xamarin.Forms;
 
-namespace MedConnect.NewViews
+namespace MedConnect.NewViews.Visits
 {
     public class VisitsPage : ContentPage
     {
@@ -27,13 +27,10 @@ namespace MedConnect.NewViews
 			Visit q2 = new Visit
 			{
 				name = "This is a sample question",
-
 			};
             
             Questions.Add(q1);
             Questions.Add(q2);
-
-			
 
 			this.BindingContext = _masterPage.MainView._visitsViewModel;
 
@@ -61,8 +58,8 @@ namespace MedConnect.NewViews
 
             addVisitsButton.Clicked += (sender, args) =>
             {
-				HandleAddVisit();
-                //Navigation.PopModalAsync();
+				var modalPage = new AddVisitPage(_masterPage);
+				Navigation.PushModalAsync(modalPage);
             };
 
             Content = new StackLayout
@@ -72,14 +69,7 @@ namespace MedConnect.NewViews
                 Children = { header, listView, addVisitsButton}
             };
         }
-
-		public async void HandleAddVisit()
-		{
-			int userID = _masterPage.MainView.User.id;
-			_masterPage.MainView._visitsViewModel.createVisit (userID);
-			await DisplayAlert("Visit Created", "New Visit created!", "OK");
-            
-		}
+	
         private void visitPage_Appearing(object sender, EventArgs args)
         {
             _masterPage.MainView.getVisits();
