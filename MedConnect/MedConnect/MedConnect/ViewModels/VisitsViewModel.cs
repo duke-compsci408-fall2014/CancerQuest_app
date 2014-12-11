@@ -62,9 +62,9 @@ namespace MedConnect
 			}
 		}
 
-		public async void createVisit(int userID)
+		public async void createVisit(int userID, string visitName)
 		{
-			await _webService.createVisit (userID);
+			await _webService.createVisit (userID, visitName);
 		}
 
 		public async void addVisitQuestion(int userID, int questionID, int visitID)

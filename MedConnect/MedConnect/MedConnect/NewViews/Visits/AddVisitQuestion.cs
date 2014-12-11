@@ -11,13 +11,11 @@ namespace MedConnect.NewViews
 {
 	public class AddVisitQuestion : ContentPage
 	{
-		MainViewModel _mainViewModel; 
 		Question _postedQuestion;
 		Visit _visit;
 
-		public AddVisitQuestion(MainViewModel mainViewModel, Visit visit)
+		public AddVisitQuestion(Visit visit)
 		{
-			_mainViewModel = mainViewModel;
 			_postedQuestion = new Question ();
 			_visit = visit;
 
@@ -65,12 +63,12 @@ namespace MedConnect.NewViews
 
 		public async void HandlePost(string questionText)
 		{
-			var response = await _mainViewModel.postQuestion(questionText);
+			var response = await App.Model.postQuestion(questionText);
 
 			_postedQuestion = response;
-			_mainViewModel._visitsViewModel.addVisitQuestion (_mainViewModel.User.id, _postedQuestion.ID, _visit.id);
+			App.Model._visitsViewModel.addVisitQuestion (App.User.id, _postedQuestion.ID, _visit.id);
 			//on success do this later
-			_mainViewModel._visitsViewModel.VisitQuestions.Add (_postedQuestion);
+			App.Model._visitsViewModel.VisitQuestions.Add (_postedQuestion);
 
 		}
 	}

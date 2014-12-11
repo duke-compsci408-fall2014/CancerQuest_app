@@ -12,13 +12,10 @@ namespace MedConnect.NewViews
 {
     public class SignupPage : ContentPage
     {
-		MasterPage _masterPage;
 
-		public SignupPage(MasterPage masterPage)
+		public SignupPage()
         {
-			_masterPage = masterPage;
             TagTranslator tt = new TagTranslator(new WebService());
-
 
             var header = new HeaderElement("Sign Up");
 
@@ -140,7 +137,7 @@ namespace MedConnect.NewViews
 
 		public async void HandleSignUp(string username, string password, string email)
 		{
-			var result = await _masterPage.MainView.createUser (username, password, email);
+			var result = await App.MasterPage.MainView.createUser (username, password, email);
 			System.Diagnostics.Debug.WriteLine (result.username);
 			if (result.username != "null") {
 				await DisplayAlert("Success!", "Welcome new user! ", "OK");

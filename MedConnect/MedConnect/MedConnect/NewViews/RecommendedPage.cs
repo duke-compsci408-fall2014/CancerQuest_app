@@ -15,18 +15,16 @@ namespace MedConnect.NewViews
      */
     public class RecommendedPage : ContentPage 
     {
-        MasterPage _masterPage;
-
-        public RecommendedPage(MasterPage masterPage)
-        {
-            _masterPage = masterPage;
+        
+        public RecommendedPage()
+        {            
             Title = "Recommended";
             BackgroundColor = Color.FromHex("#C1C1C1");
-            var tabs = new TabsHeader(_masterPage);
+            var tabs = new TabsHeader();
             
-			_masterPage.MainView.getRecQuestions();	
+			App.MasterPage.MainView.getRecQuestions();	
 
-			this.BindingContext = _masterPage.MainView;
+			this.BindingContext = App.MasterPage.MainView;
 
             var listView = new ListView(); 
 
@@ -62,7 +60,7 @@ namespace MedConnect.NewViews
 
 		public async void HandleAddLibrary(int questionID)
 		{
-			_masterPage.MainView.postLibrary(questionID);
+			App.MasterPage.MainView.postLibrary(questionID);
 			await DisplayAlert("Question Added", "Question added to your library!", "OK");
 		}
     }

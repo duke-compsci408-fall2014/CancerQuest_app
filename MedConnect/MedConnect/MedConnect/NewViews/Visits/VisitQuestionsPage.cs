@@ -5,26 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using MedConnect.Models; 
+using MedConnect.NewViews.Visits;
 
 namespace MedConnect.NewViews
 {
     public class VisitQuestionsPage : ContentPage 
-    {
-        private MasterPage _masterPage; 
+    {        
 		private Visit _visit;
 
-		public VisitQuestionsPage(MasterPage masterPage, Visit visit)
+		public VisitQuestionsPage(Visit visit)
         {
             this.Appearing += visitQuestionsPage_Appearing;
-
-            _masterPage = masterPage;
 			_visit = visit;
             BackgroundColor = Color.FromHex("#C1C1C1");
-
-			//change lol 
-			
-
-			this.BindingContext = _masterPage.MainView._visitsViewModel;
+			this.BindingContext = App.MasterPage.MainView._visitsViewModel;
 
             var listView = new ListView();
             listView.HasUnevenRows = true;
@@ -35,7 +29,7 @@ namespace MedConnect.NewViews
                 var question = args.Item as Question;
                 if (question == null) return;
 
-                var modalPage = new EditVisitQuestionPage(_masterPage, question.ID, _visit.id);
+                var modalPage = new EditVisitQuestionPage(question.ID, _visit.id);
                 Navigation.PushModalAsync(modalPage);
                 listView.SelectedItem = null;
             };
@@ -46,11 +40,11 @@ namespace MedConnect.NewViews
                 Text = "Add Question"
             };
 
-            var footer = new VisitsFooter(_visit, _masterPage); 
+            var footer = new VisitsFooter(_visit); 
 
             addQuestionButton.Clicked += (sender, args) =>
             {
-				var modalPage = new AddVisitQuestion(_masterPage.MainView, _visit);
+				var modalPage = new AddVisitQuestion(_visit);
                 Navigation.PushModalAsync(modalPage);
                 listView.SelectedItem = null;
             };
@@ -65,7 +59,7 @@ namespace MedConnect.NewViews
 
         void visitQuestionsPage_Appearing(object sender, EventArgs e)
         {
-            _masterPage.MainView._visitsViewModel.getVisitQuestions(_masterPage.MainView.User.id, _visit.id);
+            App.MasterPage.MainView._visitsViewModel.getVisitQuestions(App.MasterPage.MainView.User.id, _visit.id);
         }
 
     }

@@ -10,17 +10,14 @@ using Xamarin.Forms;
 namespace MedConnect.NewViews
 {
     public class LibraryPage : ContentPage
-    {
-        MasterPage _masterPage; 
+    {     
+		StackLayout _mainView; 
 
-        public LibraryPage(MasterPage masterPage)
-        {
-            this.Appearing += LibraryPage_Appearing;
-
-            _masterPage = masterPage; 
+        public LibraryPage()
+        {            
             BackgroundColor = Color.FromHex("#C1C1C1");
 
-			this.BindingContext = _masterPage.MainView;
+			this.BindingContext = App.MasterPage.MainView;
 
             var listView = new ListView();
             listView.HasUnevenRows = true;
@@ -31,7 +28,7 @@ namespace MedConnect.NewViews
                 var question = args.Item as Question;
                 if (question == null) return;
 
-                var modalPage = new EditQuestionPage(_masterPage, question.ID);
+                var modalPage = new EditQuestionPage(App.MasterPage, question.ID);
                 Navigation.PushModalAsync(modalPage);
                 listView.SelectedItem = null;
             };
@@ -44,22 +41,38 @@ namespace MedConnect.NewViews
 
             addQuestionButton.Clicked += (sender, args) =>
             {
-				var modalPage = new AddQuestionPage(_masterPage.MainView);
+				var modalPage = new AddQuestionPage();
                 Navigation.PushModalAsync(modalPage);
                 listView.SelectedItem = null;
             };
 
-            Content = new StackLayout
+            _mainView = new StackLayout
             {
                 Padding = new Thickness(20, 20, 20, 20),
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 Children = { header, listView, addQuestionButton }
             };
+
+			var loading = new ActivityIndicator 
+			{
+				IsRunning = true
+			}; 
+
+			var loadingView = new StackLayout 
+			{
+				Padding = new Thickness(20, 20, 20, 20),
+				VerticalOptions = LayoutOptions.FillAndExpand,
+				Children = { header, loading, addQuestionButton }
+			};
+
+			Content = loadingView; 
+			this.Appearing += LibraryPage_Appearing;
         }
 
         void LibraryPage_Appearing(object sender, EventArgs e)
         {
-            _masterPage.MainView.getLibraryQuestions();
+            App.MasterPage.MainView.getLibraryQuestions();
+			//this.Content = _mainView; 
         }
 
         

@@ -56,8 +56,6 @@ namespace MedConnect.Utilies
 			request.AddQueryString("password", password);
 			var response =  await _rc.SendAsync<User> (request);
 
-			//System.Diagnostics.Debug.WriteLine(response.Content.username);
-
 			return response.Content;
 
 		}
@@ -131,12 +129,12 @@ namespace MedConnect.Utilies
 			return response.Content;
 		}
 
-		public async Task<Visit> createVisit(int userID)
+		public async Task<Visit> createVisit(int userID, string visitName)
 		{
 			string addr = "/users/" + userID + "/appointments";
 			var request = new RestRequest(addr, HttpMethod.Post);
 			addHeader (request);
-            request.AddQueryString("name", "Test Appointment");
+            request.AddQueryString("name", visitName);
 
 
 			var response = await _rc.SendAsync<Visit>(request);

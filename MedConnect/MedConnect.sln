@@ -215,7 +215,7 @@ Global
 		{EC74D87B-E4A3-44A2-9853-DC117E006839}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = MedConnect\MedConnect.iOS\MedConnect.iOS.csproj
+		StartupItem = MedConnect\MedConnect.Android\MedConnect.Android.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
