@@ -82,6 +82,10 @@
     <Compile Include="NewViews\MostHelpfulPage.cs" />
     <Compile Include="NewViews\MostPopularPage.cs" />
     <Compile Include="NewViews\RecentlyAddedPage.cs" />
+    <Compile Include="NewViews\BaseContentPage.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="NewViews\RootPage.cs" />
+    <Compile Include="NewViews\SplashScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Threading.Tasks">

@@ -14,12 +14,10 @@ namespace MedConnect.NewViews
      */
     public class SearchPage : ContentPage
     {
-        MasterPage _masterPage; 
-
-        public SearchPage(MasterPage masterPage)
+        
+        public SearchPage()
         {
-			Title = "Search";
-            _masterPage = masterPage; 
+			Title = "Search";           
 
             BackgroundColor = Color.FromHex("#C1C1C1");
             var header = new HeaderElement("Search");
@@ -40,7 +38,7 @@ namespace MedConnect.NewViews
             Content = new StackLayout
             {
                 Padding = new Thickness(20, 20, 20, 20),
-                Children = { header, new TabsHeader(_masterPage), searchBar, 
+                Children = { header, new TabsHeader(), searchBar, 
                     new ScrollView
                     {
                         Content = listView,
@@ -51,9 +49,9 @@ namespace MedConnect.NewViews
 
         public void HandleSearch(string searchQuery, ListView listview)
         {
-            _masterPage.MainView._searchViewModel.getSearchResults(searchQuery);
+            App.MasterPage.MainView._searchViewModel.getSearchResults(searchQuery);
 
-            this.BindingContext = _masterPage.MainView._searchViewModel;
+            this.BindingContext = App.MasterPage.MainView._searchViewModel;
             listview.HasUnevenRows = true;
             listview.SetBinding(ListView.ItemsSourceProperty, new Binding("Results"));
             listview.ItemTemplate = new DataTemplate(typeof(QuestionCell));
@@ -70,7 +68,7 @@ namespace MedConnect.NewViews
         }
         public async void HandleAddLibrary(int questionID)
         {
-            _masterPage.MainView.postLibrary(questionID);
+            App.MasterPage.MainView.postLibrary(questionID);
             await DisplayAlert("Question Added", "Question added to your library!", "OK");
 
         }

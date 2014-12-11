@@ -10,13 +10,11 @@ using MedConnect.Models;
 namespace MedConnect.NewViews
 {
     public class AddQuestionPage : ContentPage
-    {
-        MainViewModel _mainViewModel; 
+    {        
 		Question _postedQuestion;
 
-        public AddQuestionPage(MainViewModel mainViewModel)
-        {
-            _mainViewModel = mainViewModel;
+        public AddQuestionPage()
+        {            
 			_postedQuestion = new Question ();
 
             var header = new HeaderElement("Add a Question");
@@ -63,13 +61,13 @@ namespace MedConnect.NewViews
 
 		public async void HandlePost(string questionText)
 		{
-			var response = await _mainViewModel.postQuestion(questionText);
+			var response = await App.Model.postQuestion(questionText);
 			
 			_postedQuestion = response;
 			System.Diagnostics.Debug.WriteLine(_postedQuestion.Text);
-			_mainViewModel.postLibrary(_postedQuestion.ID);
+			App.Model.postLibrary(_postedQuestion.ID);
 			//on success do this later
-			_mainViewModel.LibraryQuestions.Add (_postedQuestion);
+			App.Model.LibraryQuestions.Add (_postedQuestion);
 
 		}
     }

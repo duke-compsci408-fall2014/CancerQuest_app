@@ -24,12 +24,27 @@ namespace MedConnect.NewViews
                 TextColor = Color.FromHex("#636363")
             };
 
+			var authorLabel = new Label
+			{ 
+				Text = "Created by Jonathan Schmidt, Kevin Oh, and Rebecca Lai",
+				TextColor = Color.FromHex("#000000"),
+				XAlign = TextAlignment.Center
+			}; 
+
+			if (Device.OS == TargetPlatform.iOS) 
+			{
+				authorLabel.Font = Font.SystemFontOfSize (12, FontAttributes.Bold);
+			}
+			else {
+				authorLabel.Font = Font.SystemFontOfSize (12, FontAttributes.Bold);
+			}
+
             /* Put contents of page into new stack layout */
             var contentLayout = new StackLayout
             {
                 Orientation = StackOrientation.Vertical,
                 VerticalOptions = LayoutOptions.FillAndExpand,
-                Children = { header, descriptionLabel },
+                Children = { header, descriptionLabel, authorLabel},
                 Spacing = 20,
                 Padding = new Thickness(20, 20, 20, 20),
                 BackgroundColor = Color.FromHex("#FFFFFF")

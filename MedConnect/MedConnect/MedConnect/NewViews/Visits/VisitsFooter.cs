@@ -1,22 +1,19 @@
-﻿using MedConnect.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms; 
+using MedConnect.Models;
 
 namespace MedConnect.NewViews
 {
     public class VisitsFooter : StackLayout
     {
-        private Visit _visit;
-        private MasterPage _masterPage;
-        public VisitsFooter(Visit visit, MasterPage masterPage)
+        private Visit _visit;        
+        public VisitsFooter(Visit visit)
         {
             _visit = visit;
-            _masterPage = masterPage;
-
             var deleteLabel = new Label
             {
                 Text = "Delete",
@@ -34,9 +31,9 @@ namespace MedConnect.NewViews
             var deleteTapRecognizer = new TapGestureRecognizer();
             deleteTapRecognizer.Tapped += (s, e) =>
             {
-                _masterPage.MainView._visitsViewModel.deleteVisit(_masterPage.MainView.User.id, _visit.id);
+                App.MasterPage.MainView._visitsViewModel.deleteVisit(App.MasterPage.MainView.User.id, _visit.id);
 
-                Navigation.PushModalAsync(new VisitsPage(_masterPage));
+                Navigation.PushModalAsync(new VisitsPage());
             };
             deleteTab.GestureRecognizers.Add(deleteTapRecognizer);
 

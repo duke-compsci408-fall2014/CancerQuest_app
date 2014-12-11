@@ -10,16 +10,12 @@ namespace MedConnect.NewViews
 {
     public class MostHelpfulPage: ContentPage 
     {
-        MasterPage _masterPage; 
-
-        public MostHelpfulPage(MasterPage masterPage)
-        {
-            _masterPage = masterPage;
-
+        public MostHelpfulPage()
+        {            
             Title = "Most Helpful Questions";
             BackgroundColor = Color.FromHex("#C1C1C1");
 
-            this.BindingContext = _masterPage.MainView;
+			this.BindingContext = App.MasterPage;
 
             var listView = new ListView();
             listView.HasUnevenRows = true;

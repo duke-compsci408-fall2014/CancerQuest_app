@@ -9,12 +9,9 @@ namespace MedConnect.NewViews
 {
     public class TabsHeader : StackLayout
     {
-        MasterPage _masterPage;
-
-        public TabsHeader(MasterPage masterPage)
+        
+        public TabsHeader()
         {
-            _masterPage = masterPage; 
-
             var recommendedLabel = new Label
             {
                 Text = "Recommended",
@@ -33,8 +30,8 @@ namespace MedConnect.NewViews
             var recommendedTapRecognizer = new TapGestureRecognizer();
             recommendedTapRecognizer.Tapped += (s, e) =>
             {
-                _masterPage.Master = _masterPage.getMasterContentPage();
-                _masterPage.Detail = new RecommendedPage(_masterPage);
+                App.MasterPage.Master = App.MasterPage.getMasterContentPage();
+                App.MasterPage.Detail = new RecommendedPage();
             };
             recommendedTab.GestureRecognizers.Add(recommendedTapRecognizer);
 
@@ -55,8 +52,8 @@ namespace MedConnect.NewViews
             var browseTapRecognizer = new TapGestureRecognizer();
             browseTapRecognizer.Tapped += (s, e) =>
             {
-                _masterPage.Master = _masterPage.getMasterContentPage();
-                _masterPage.Detail = new BrowsePage(_masterPage);
+                App.MasterPage.Master = App.MasterPage.getMasterContentPage();
+                App.MasterPage.Detail = new BrowsePage();
             };
             browseTab.GestureRecognizers.Add(browseTapRecognizer);
 
@@ -77,8 +74,8 @@ namespace MedConnect.NewViews
             var searchTapRecognizer = new TapGestureRecognizer();
             searchTapRecognizer.Tapped += (s, e) =>
             {
-                _masterPage.Master = _masterPage.getMasterContentPage();
-                _masterPage.Detail = new SearchPage(_masterPage);
+                App.MasterPage.Master = App.MasterPage.getMasterContentPage();
+                App.MasterPage.Detail = new SearchPage();
             };
             searchTab.GestureRecognizers.Add(searchTapRecognizer);
 
