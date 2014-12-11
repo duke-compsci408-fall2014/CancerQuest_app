@@ -7,6 +7,10 @@ using Xamarin.Forms;
 
 namespace MedConnect.NewViews
 {
+    /* 
+     * A HeaderElement is a flexible UI component that is used on multiple pages 
+     * Each HeaderElement takes in a string and formats it into a StackLayout that can then be placed on other pages 
+     */
     public class HeaderElement : StackLayout 
     {
         public HeaderElement(String pageName)

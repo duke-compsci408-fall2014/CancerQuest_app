@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Xamarin.Forms;
-using MedConnect.NewViews; 
+using MedConnect.NewViews;
+using MedConnect.ViewModels; 
 
 namespace MedConnect
 {
@@ -11,8 +12,8 @@ namespace MedConnect
     {
         public static Page GetMainPage()
         {
-            var loginPage = new LoginPage();
-
+            //MasterPage mp = new MasterPage(new MainViewModel());
+			var loginPage = new LoginPage();
             return loginPage;
         }
     }

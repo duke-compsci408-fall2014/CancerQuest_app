@@ -1,0 +1,10 @@
+Our application currently has the following functionality: 
+-Account creation/user login 
+-Browse list of recommended questions 
+-Search for questions by tag 
+-Add questions to a user library
+-Add custom question
+-Create a visit 
+-Add questions to a visit 
+
+The application has been tested on emulators for iOS, Android, and Windows Phone. It has been deployed to Android and Windows Phone. 

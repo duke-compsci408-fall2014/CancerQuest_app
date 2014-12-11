@@ -2,7 +2,7 @@
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
   <App xmlns="" ProductID="{fd163a16-f60e-4c17-906f-550dd9dc2e06}" Title="myQ" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="MedConnect.WinPhone author" Description="Sample description" Publisher="MedConnect.WinPhone" PublisherID="{8489e726-c237-4992-8842-5a6e9544f429}">
-    <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
+    <IconPath IsRelative="true" IsResource="false">Icon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
       <Capability Name="ID_CAP_MEDIALIB_AUDIO" />

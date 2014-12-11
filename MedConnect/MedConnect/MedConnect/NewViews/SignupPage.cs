@@ -12,10 +12,12 @@ namespace MedConnect.NewViews
     public class SignupPage : ContentPage
     {
 		MasterPage _masterPage;
+
 		public SignupPage(MasterPage masterPage)
         {
-            var header = new HeaderElement("Sign Up");
 			_masterPage = masterPage;
+
+            var header = new HeaderElement("Sign Up");
 
             var usernameEntry = new Entry
             {
@@ -44,11 +46,62 @@ namespace MedConnect.NewViews
 				
 			};
 
+            List<String> genderTypes = new List<String>
+            {
+                "Male",
+                "Female",
+                "Other"
+            };
+
+            var genderLabel = new Label
+            {
+                Text = "Choose your gender",
+                TextColor = Color.FromHex("#C1C1C1")
+            };
+
+            var genderPicker = new Picker
+            {
+                Title = "Choose Your Gender",
+                BackgroundColor = Color.FromHex("#C1C1C1"),
+                VerticalOptions = LayoutOptions.CenterAndExpand 
+            };
+
+            foreach (string genderString in genderTypes)
+            {
+                genderPicker.Items.Add(genderString);
+            }
+
+            List<String> cancerTypes = new List<String>
+            {
+                "Cancer Type 1",
+                "Cancer Type 2",
+                "Cancer Type 3"
+            };
+
+            var cancerPickerLabel = new Label
+            {
+                Text = "Choose your cancer type",
+                TextColor = Color.FromHex("#C1C1C1")
+            };
+
+            var cancerPicker = new Picker
+            {
+                Title = "Cancer Type",
+                BackgroundColor = Color.FromHex("#C1C1C1"),
+                VerticalOptions = LayoutOptions.CenterAndExpand
+            };
+
+            foreach (string cancerString in cancerTypes)
+            {
+                cancerPicker.Items.Add(cancerString);
+            }
+
             var submitButton = new Button
             {
                 Text = "Create an account",
                 BackgroundColor = Color.FromHex("#9ee4e7")
             };
+
 			submitButton.Clicked += (sender, args) =>
 			{
 				string username = usernameEntry.Text;
@@ -66,13 +119,20 @@ namespace MedConnect.NewViews
             {
                 Orientation = StackOrientation.Vertical,
                 VerticalOptions = LayoutOptions.FillAndExpand,
-                Children = { header, usernameEntry, passwordEntry, passwordRetypeEntry, emailEntry, submitButton },
-                Spacing = 20,
-                Padding = new Thickness(20, 20, 20, 20),
+                Children = { header, usernameEntry, passwordEntry, passwordRetypeEntry, emailEntry, genderLabel, genderPicker, cancerPickerLabel, cancerPicker, submitButton },
+                //Spacing = 20,
+                //Padding = new Thickness(20, 20, 20, 20),
                 BackgroundColor = Color.FromHex("#FFFFFF")
             };
 
-            Content = contentLayout; 
+			if (Device.OS == TargetPlatform.iOS) {
+				Padding = new Thickness (20, 20, 20, 20);
+			}
+
+            Content = new ScrollView
+            {
+                Content = contentLayout 
+            }; 
         }
 
 		public async void HandleSignUp(string username, string password, string email)

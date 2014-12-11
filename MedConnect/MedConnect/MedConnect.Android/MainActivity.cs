@@ -11,7 +11,7 @@ using Xamarin.Forms.Platform.Android;
 
 namespace MedConnect.Droid
 {
-    [Activity(Label = "MedConnect", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "MedConnect", Icon="@drawable/Icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : AndroidActivity
     {
         protected override void OnCreate(Bundle bundle)

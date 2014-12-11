@@ -122,6 +122,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="add_question.png" />
     <Content Include="Assets\AlignmentGrid.png" />
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -157,12 +158,17 @@
     <Content Include="logo.png" />
     <Content Include="logo2.png" />
     <Content Include="logo3.png" />
+<<<<<<< HEAD
+=======
+    <Content Include="navigation.png" />
+>>>>>>> 5d2aa40b3dc2e777bd54489a6c276061b2db8857
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
+    <Content Include="tutorial.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.resx">

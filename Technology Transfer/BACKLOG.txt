@@ -1,0 +1,2 @@
+
+In the future we would like to implement support for recordings so that clients can record their consultation sessions and save them within the application. 

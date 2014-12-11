@@ -40,7 +40,7 @@ namespace MedConnect
         {
             var temp = await _webService.getTags();
             allCategories = temp;
-			initializeCategoryDict();
+			//initializeCategoryDict();
         }
 
         private void initializeCategoryDict()

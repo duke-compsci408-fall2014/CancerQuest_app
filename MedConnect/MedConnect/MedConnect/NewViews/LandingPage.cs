@@ -11,6 +11,11 @@ namespace MedConnect.NewViews
     {
         MasterPage _masterPage;
 
+        /* 
+         * The LandingPage is the first page that users see upon logging in.
+         * It presents the user with the basic workflow of the app - discovering questions, adding them to a library, creating visits
+         * Each LandingCell is a clickable UI item that takes the user to the appropriate page 
+         */ 
         public LandingPage(MasterPage masterPage) 
         {
 			Title = "Home";

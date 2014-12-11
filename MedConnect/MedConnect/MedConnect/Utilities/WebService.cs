@@ -14,30 +14,44 @@ namespace MedConnect.Utilies
 	public class WebService
 	{
 
-        private RestClient _rc = new RestClient { BaseUrl = "http://cancerquest.azurewebsites.net" };
+        private RestClient _rc = new RestClient { BaseUrl = "http://duke-myq.azurewebsites.net/api" };
+		private string _curSesh;
         //
 		public WebService ()
 		{		
-            
-		}
 
+		}
+		public void setSession(string curSesh)
+		{
+			_curSesh = curSesh;
+		}
+		private void addHeader(RestRequest request)
+		{
+			request.AddHeader ("X-Auth-Session", _curSesh); 
+		}
 		public async Task<ObservableCollection<Question>> getRecQuestions()
 		{   
             var request = new RestRequest("/questions", HttpMethod.Get);
+			addHeader (request);
 
             var response = await _rc.SendAsync<ObservableCollection<Question>>(request);
 
             return response.Content;
 		}
-		public async Task<ObservableCollection<Question>> getSortedQuestions(string parameter)
-		{
-			///questions/?sort=popular&order=desc
-			return null;
+		public async Task<ObservableCollection<Question>> getSortedQuestions(string type)
+		{   
+			var request = new RestRequest("/questions/?sort=" + type + "&order=desc", HttpMethod.Get);
+			addHeader (request);
 
+			var response = await _rc.SendAsync<ObservableCollection<Question>>(request);
+
+			return response.Content;
 		}
+
 		public async Task<User> login(string username, string password) 
 		{
 			var request = new RestRequest ("/users/login/", HttpMethod.Post);
+			
 			request.AddQueryString("username", username);
 			request.AddQueryString("password", password);
 			var response =  await _rc.SendAsync<User> (request);
@@ -63,7 +77,8 @@ namespace MedConnect.Utilies
 
         public async Task<Question> postQuestion(string question)
         {
-            var request = new RestRequest("/questions/", HttpMethod.Post);            
+            var request = new RestRequest("/questions/", HttpMethod.Post);
+			addHeader (request);
 			request.AddQueryString("text", question);
 
             var response = await _rc.SendAsync<Question>(request);
@@ -75,7 +90,8 @@ namespace MedConnect.Utilies
 		public async Task<Question> postLibrary(int questionID, int userID)
 		{
 			string addr = "/users/" + userID + "/questions/";
-			var request = new RestRequest(addr, HttpMethod.Post);            
+			var request = new RestRequest(addr, HttpMethod.Post);
+			addHeader (request);
 			request.AddQueryString("id", questionID);
 
 			var response = await _rc.SendAsync<Question>(request);
@@ -87,7 +103,8 @@ namespace MedConnect.Utilies
 		{
             string addr = "/users/" + userID + "/questions/";
 
-            var request = new RestRequest(addr, HttpMethod.Get); 
+            var request = new RestRequest(addr, HttpMethod.Get);
+			addHeader (request);
 
             var response = await _rc.SendAsync<ObservableCollection<Question>>(request);
             
@@ -97,7 +114,7 @@ namespace MedConnect.Utilies
 		{
 			string addr = "/users/" + userID + "/appointments";
 			var request = new RestRequest(addr, HttpMethod.Get); 
-
+			addHeader (request);
 			var response = await _rc.SendAsync<ObservableCollection<Visit>>(request);
 
 			return response.Content;
@@ -108,7 +125,7 @@ namespace MedConnect.Utilies
             string addr = "/users/" + userID + "/appointments/" + visitID;
 
 			var request = new RestRequest(addr, HttpMethod.Get); 
-
+			addHeader (request);
 			var response = await _rc.SendAsync<Visit>(request);
 
 			return response.Content;
@@ -118,6 +135,7 @@ namespace MedConnect.Utilies
 		{
 			string addr = "/users/" + userID + "/appointments";
 			var request = new RestRequest(addr, HttpMethod.Post);
+			addHeader (request);
             request.AddQueryString("name", "Test Appointment");
 
 
@@ -129,7 +147,7 @@ namespace MedConnect.Utilies
 		{
 			string addr = "/users/" + userID + "/appointments/" + visitID;
 			var request = new RestRequest(addr, HttpMethod.Delete);
-
+			addHeader (request);
 			var response = await _rc.SendAsync<Visit> (request);
 
             System.Diagnostics.Debug.WriteLine("yoloswag");
@@ -139,6 +157,7 @@ namespace MedConnect.Utilies
 			string addr = "/users/" + userID + "/appointments/" + visitID + "/question";
 
 			var request = new RestRequest(addr, HttpMethod.Post);
+			addHeader (request);
 			request.AddQueryString("qid", questionID);
 			var response = await _rc.SendAsync<Question> (request);
 
@@ -150,6 +169,7 @@ namespace MedConnect.Utilies
             string addr = "/users/" + userID + "/appointments/" + visitID + "/question";
 
 			var request = new RestRequest(addr, HttpMethod.Delete);
+			addHeader (request);
 			request.AddQueryString("qid", questionID);
             
 			var response = await _rc.SendAsync<Question> (request);
@@ -161,20 +181,18 @@ namespace MedConnect.Utilies
             string addr = "/users/" + userID + "/questions/";
 
             var request = new RestRequest(addr, HttpMethod.Delete);
+			addHeader (request);
             request.AddQueryString("id", questionID);
             await _rc.SendAsync<String>(request);
         }
         public async Task<ObservableCollection<Question>> getSearchResults(string query)
         {
             var request = new RestRequest("/questions/search?q=" + query, HttpMethod.Get);
-
+			addHeader (request);
             var response = await _rc.SendAsync<ObservableCollection<Question>>(request);
 
             return response.Content;
         }	
-
-
-
 
 
 
@@ -183,7 +201,7 @@ namespace MedConnect.Utilies
         public async Task<ObservableCollection<Category>> getTags()
         {
             var request = new RestRequest("/tags", HttpMethod.Get);
-
+			addHeader (request);
             var response = await _rc.SendAsync<ObservableCollection<Category>>(request);
             System.Diagnostics.Debug.WriteLine("yoloswag");
 
@@ -197,7 +215,7 @@ namespace MedConnect.Utilies
             string addr = "/questions/" + questionID + "/rating";
 
             var request = new RestRequest(addr, HttpMethod.Get);
-
+			addHeader (request);
 	        var response = await _rc.SendAsync<Rating>(request);
 
 	        return response.Content;
@@ -207,6 +225,7 @@ namespace MedConnect.Utilies
 	    {
             string addr = "/questions/" + questionID + "/rating";
 	        var request = new RestRequest(addr, HttpMethod.Post);
+			addHeader (request);
             request.AddQueryString("user", userID);
             request.AddQueryString("vote", rating);
 

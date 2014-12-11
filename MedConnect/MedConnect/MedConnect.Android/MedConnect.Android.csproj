@@ -109,6 +109,9 @@
     <AndroidResource Include="Resources\Drawable\icon_brightness.png" />
     <AndroidResource Include="Resources\Drawable\icon_upload.png" />
     <AndroidResource Include="Resources\Drawable\icon_expand.png" />
+    <AndroidResource Include="Resources\Drawable\tutorial.png" />
+    <AndroidResource Include="Resources\Drawable\navigation.png" />
+    <AndroidResource Include="Resources\Drawable\add_question.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MedConnect\MedConnect.csproj">

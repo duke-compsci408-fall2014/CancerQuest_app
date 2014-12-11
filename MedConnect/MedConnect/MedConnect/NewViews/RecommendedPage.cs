@@ -9,6 +9,10 @@ using MedConnect.ViewModels;
 
 namespace MedConnect.NewViews
 {
+    /*
+     * The RecommendPage contains questions drawn from the database that are recommended for the specific user
+     * Questions are selected from the DB based on the user's profile (gender, cancer type, age range, etc.) 
+     */
     public class RecommendedPage : ContentPage 
     {
         MasterPage _masterPage;
@@ -24,8 +28,14 @@ namespace MedConnect.NewViews
 
 			this.BindingContext = _masterPage.MainView;
 
-            var listView = new ListView(); 	 
-            listView.HasUnevenRows = true;
+            var listView = new ListView(); 
+
+			/*if (Device.OS == TargetPlatform.iOS) {
+				listView.HasUnevenRows = false; 
+			} else {
+				listView.HasUnevenRows = true;
+			}*/
+			listView.HasUnevenRows = true; 
 			listView.SetBinding (ListView.ItemsSourceProperty, new Binding ("RecommendedQuestions"));
            
             listView.ItemTemplate = new DataTemplate(typeof(QuestionCell));
@@ -39,12 +49,14 @@ namespace MedConnect.NewViews
 
             var header = new HeaderElement("Recommended Questions");
 
-            Content = new StackLayout
+			var mainLayout = new StackLayout
             {
                 Padding = new Thickness(20, 20, 20, 20),
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 Children = { header, tabs, listView }
             };
+
+			Content = mainLayout; 
             
         }
 
