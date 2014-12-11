@@ -18,11 +18,12 @@ namespace MedConnect.NewViews
             Title = "Most Popular Questions";
             BackgroundColor = Color.FromHex("#C1C1C1");
 
+            _masterPage.MainView.getSortedQuestions("popular");
             this.BindingContext = _masterPage.MainView;
 
             var listView = new ListView();
             listView.HasUnevenRows = true;
-            //listView.SetBinding(ListView.ItemsSourceProperty, new Binding("RecommendedQuestions"));
+            listView.SetBinding(ListView.ItemsSourceProperty, new Binding("RecommendedQuestions"));
             listView.ItemTemplate = new DataTemplate(typeof(QuestionCell));
             listView.ItemTapped += (sender, args) =>
             {
