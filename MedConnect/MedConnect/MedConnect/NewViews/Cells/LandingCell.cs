@@ -29,8 +29,16 @@ namespace MedConnect.NewViews
             {
                 Text = detail,
                 TextColor = Color.FromHex("#636363"),
-                Font = Font.SystemFontOfSize(NamedSize.Medium) 
             };
+
+			//Platform-specific formatting 
+			if (Device.OS == TargetPlatform.iOS) {
+				detailLabel.Font = Font.SystemFontOfSize (NamedSize.Micro); 
+				mainTextLabel.Font = Font.SystemFontOfSize (16, FontAttributes.Bold);
+			} else {
+				detailLabel.Font = Font.SystemFontOfSize (NamedSize.Medium);
+				mainTextLabel.Font = Font.SystemFontOfSize (20, FontAttributes.Bold);
+			}
 
             StackLayout textLayout = new StackLayout
             {

@@ -86,6 +86,8 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="NewViews\RootPage.cs" />
     <Compile Include="NewViews\SplashScreen.cs" />
+    <Compile Include="NewViews\Visits\AddVisitPage.cs" />
+    <Compile Include="NewViews\Visits\RenameVisitPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Threading.Tasks">

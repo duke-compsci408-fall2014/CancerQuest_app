@@ -18,7 +18,6 @@ namespace MedConnect.NewViews
 			get { return BindingContext as LoginViewModel; }
 			set { }
 		}
-
         public LoginPage()
         {
 			BindingContext = new LoginViewModel();
@@ -50,12 +49,14 @@ namespace MedConnect.NewViews
             var loginButton = new Button
             {
                 Text = "Login",
+				TextColor = Color.FromHex("#FFFFFF"),
                 BackgroundColor = Color.FromHex("#9ee4e7")
             };
 
             var signupButton = new Button
             {
                 Text = "Sign up",
+				TextColor = Color.FromHex("#FFFFFF"),
                 BackgroundColor = Color.FromHex("#76ccd0")
             };
 

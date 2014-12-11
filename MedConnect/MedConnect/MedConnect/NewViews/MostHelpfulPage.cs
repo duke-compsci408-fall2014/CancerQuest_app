@@ -14,8 +14,8 @@ namespace MedConnect.NewViews
         {            
             Title = "Most Helpful Questions";
             BackgroundColor = Color.FromHex("#C1C1C1");
-
 			this.BindingContext = App.MasterPage;
+			App.Model.getSortedQuestions("helpful");           
 
             var listView = new ListView();
             listView.HasUnevenRows = true;

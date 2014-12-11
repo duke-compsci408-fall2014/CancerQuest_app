@@ -10,6 +10,7 @@ using MedConnect.ViewModels;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Linq.Expressions;
+using MedConnect.NewViews.Visits;
 
 namespace MedConnect.NewViews
 {
@@ -82,7 +83,7 @@ namespace MedConnect.NewViews
 
             var master = new ContentPage
             {
-                Title = "Master",
+                Title = "Menu",
                 BackgroundColor = Color.Silver,
                 Content = new StackLayout
                 {
@@ -141,5 +142,11 @@ namespace MedConnect.NewViews
 
             return master; 
         }
+
+		public void setDetailPage(ContentPage page) 
+		{
+			Detail = new NavigationPage (page); 
+			IsPresented = false; 
+		}
     }
 }

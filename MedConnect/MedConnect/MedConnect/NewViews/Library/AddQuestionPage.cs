@@ -43,7 +43,6 @@ namespace MedConnect.NewViews
             {
                 string questionText = questionTextEntry.Text;
 				HandlePost(questionText);
-
                 Navigation.PopModalAsync();
             };
 

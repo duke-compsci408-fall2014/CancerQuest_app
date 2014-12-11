@@ -79,6 +79,11 @@ namespace MedConnect.NewViews
             };
             searchTab.GestureRecognizers.Add(searchTapRecognizer);
 
+			if (Device.OS == TargetPlatform.iOS) {
+				recommendedLabel.Font = Font.SystemFontOfSize (NamedSize.Micro); 
+				browseLabel.Font = Font.SystemFontOfSize (NamedSize.Micro); 
+				searchLabel.Font = Font.SystemFontOfSize (NamedSize.Micro); 
+			}
             Orientation = StackOrientation.Horizontal;
             HorizontalOptions = LayoutOptions.StartAndExpand; 
             Children.Add(recommendedTab);

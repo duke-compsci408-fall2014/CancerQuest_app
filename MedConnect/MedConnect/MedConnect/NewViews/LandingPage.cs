@@ -3,7 +3,7 @@ using Xamarin.Forms;
 using System.Diagnostics;
 using MedConnect.Models; 
 using MedConnect.ViewModels; 
-
+using MedConnect.NewViews.Visits;
 
 namespace MedConnect.NewViews
 {

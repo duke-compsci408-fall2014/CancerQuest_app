@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedConnect.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,12 +10,15 @@ namespace MedConnect.NewViews
 {
     public class QuestionCell : ViewCell
     {
+        Question myQuestion;
+
         public QuestionCell()
         {
+            myQuestion = (Question)this.BindingContext;
+            
             var textLabel = new Label
             {
-                TextColor = Color.FromHex("#636363"),
-                Font = Font.SystemFontOfSize(20, FontAttributes.Bold)
+                TextColor = Color.FromHex("#636363")
             };
             textLabel.SetBinding(Label.TextProperty, "Text");
 
@@ -44,9 +48,20 @@ namespace MedConnect.NewViews
                 Orientation = StackOrientation.Vertical,
                 VerticalOptions = LayoutOptions.Start,
                 BackgroundColor = Color.FromHex("#FFFFFF"),
-                WidthRequest = 320,
+                //WidthRequest = 320,
                 Children = { textLabel, ratingLabel, tagsLabel }
             };
+
+			//Platform-specific formatting 
+			if (Device.OS == TargetPlatform.iOS) {
+				textLabel.Font = Font.SystemFontOfSize (10, FontAttributes.Bold);
+				textLayout.WidthRequest = 600; 
+				ratingLabel.Font = Font.SystemFontOfSize (10, FontAttributes.None);
+				tagsLabel.Font = Font.SystemFontOfSize (10, FontAttributes.None);
+			} else {
+				textLabel.Font = Font.SystemFontOfSize (20, FontAttributes.Bold);
+				textLayout.WidthRequest = 320; 
+			}
 
             var viewLayout = new StackLayout()
             {
@@ -56,6 +71,10 @@ namespace MedConnect.NewViews
                 Children = { textLayout, image }
             };
 
+			if (Device.OS == TargetPlatform.iOS) {
+				viewLayout.Padding = new Thickness (10, 5, 5, 5);
+			}
+
             var mainLayout = new StackLayout()
             {
                 VerticalOptions = LayoutOptions.Start,
@@ -63,7 +82,20 @@ namespace MedConnect.NewViews
                 BackgroundColor = Color.FromHex("#C1C1C1"),
                 Children = { viewLayout }
             };
-            View = mainLayout; 
+
+			if (Device.OS == TargetPlatform.iOS) {
+				mainLayout.Padding = new Thickness (0, 0, 0, 0); 
+			}
+            
+			View = mainLayout; 
         }
+			
+		protected override void OnBindingContextChanged ()
+		{
+			base.OnBindingContextChanged ();
+			if (Device.OS == TargetPlatform.iOS) { // don't bother on the other platforms
+				Height = 500; 
+			}
+		}
     }
 }
