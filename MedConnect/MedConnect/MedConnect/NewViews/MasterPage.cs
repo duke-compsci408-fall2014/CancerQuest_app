@@ -83,7 +83,7 @@ namespace MedConnect.NewViews
 
             var master = new ContentPage
             {
-                Title = "Master",
+                Title = "Menu",
                 BackgroundColor = Color.Silver,
                 Content = new StackLayout
                 {
@@ -142,5 +142,11 @@ namespace MedConnect.NewViews
 
             return master; 
         }
+
+		public void setDetailPage(ContentPage page) 
+		{
+			Detail = new NavigationPage (page); 
+			IsPresented = false; 
+		}
     }
 }

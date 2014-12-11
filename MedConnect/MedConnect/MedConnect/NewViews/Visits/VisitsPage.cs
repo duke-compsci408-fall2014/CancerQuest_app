@@ -45,8 +45,8 @@ namespace MedConnect.NewViews.Visits
 				var visit = args.Item as Visit;
 				if (visit == null) return;
 
-				var modalPage = new VisitQuestionsPage(_masterPage, visit);
-				Navigation.PushModalAsync(modalPage);
+				ContentPage visitPage = new VisitQuestionsPage(_masterPage, visit);
+				_masterPage.setDetailPage(visitPage); 
 				listView.SelectedItem = null;
 			};
 
