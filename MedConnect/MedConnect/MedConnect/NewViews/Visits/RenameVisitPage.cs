@@ -12,7 +12,7 @@ namespace MedConnect.NewViews.Visits
 
 			var renameVisitEntry = new Entry
 			{
-				Text = "Rename your visit"
+				Placeholder = "Rename your visit"
 			};
 
 			var submitNewNameButton = new Button

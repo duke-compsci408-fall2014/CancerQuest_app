@@ -21,7 +21,7 @@ namespace MedConnect.NewViews
 
             var questionTextEntry = new Entry
             {
-                Text = "Type your question here"
+                Placeholder= "Type your question here"
             };
 
             var submitQuestionButton = new Button

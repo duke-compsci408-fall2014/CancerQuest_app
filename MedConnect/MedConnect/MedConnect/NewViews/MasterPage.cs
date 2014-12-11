@@ -35,11 +35,7 @@ namespace MedConnect.NewViews
         {            
 			this.Master = this.getMasterContentPage ();
 			this.Detail = new LandingPage ();
-
-            FileImageSource f = new FileImageSource();
-            f.File = "Icon.png";
-
-            this.Icon = f;
+            this.Icon = "Icon.png";
         }
 
 
