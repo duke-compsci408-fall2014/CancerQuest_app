@@ -18,7 +18,6 @@ namespace MedConnect.NewViews
 		MasterPage mp;
 
         private StackLayout loginForm;
-
         private StackLayout loginView;
 
         public LoginPage()
@@ -51,12 +50,14 @@ namespace MedConnect.NewViews
             var loginButton = new Button
             {
                 Text = "Login",
+				TextColor = Color.FromHex("#FFFFFF"),
                 BackgroundColor = Color.FromHex("#9ee4e7")
             };
 
             var signupButton = new Button
             {
                 Text = "Sign up",
+				TextColor = Color.FromHex("#FFFFFF"),
                 BackgroundColor = Color.FromHex("#76ccd0")
             };
 
@@ -84,7 +85,6 @@ namespace MedConnect.NewViews
                         IsRunning = true
                     }
                 );
-
                 string username = usernameEntry.Text;
                 string password = passwordEntry.Text; 
                 if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))

@@ -12,8 +12,8 @@ namespace MedConnect
     {
         public static Page GetMainPage()
         {
-            MasterPage mp = new MasterPage(new MainViewModel());
-            var loginPage = new SignupPage(mp);
+            //MasterPage mp = new MasterPage(new MainViewModel());
+			var loginPage = new LoginPage();
             return loginPage;
         }
     }

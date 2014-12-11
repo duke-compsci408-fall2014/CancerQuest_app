@@ -42,12 +42,14 @@ namespace MedConnect.NewViews
 
             var header = new HeaderElement("Recommended Questions");
 
-            Content = new StackLayout
+			var mainLayout = new StackLayout
             {
                 Padding = new Thickness(20, 20, 20, 20),
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 Children = { header, tabs, listView }
             };
+
+			Content = mainLayout; 
             
         }
 

@@ -120,10 +120,14 @@ namespace MedConnect.NewViews
                 Orientation = StackOrientation.Vertical,
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 Children = { header, usernameEntry, passwordEntry, passwordRetypeEntry, emailEntry, genderLabel, genderPicker, cancerPickerLabel, cancerPicker, submitButton },
-                Spacing = 20,
-                Padding = new Thickness(20, 20, 20, 20),
+                //Spacing = 20,
+                //Padding = new Thickness(20, 20, 20, 20),
                 BackgroundColor = Color.FromHex("#FFFFFF")
             };
+
+			if (Device.OS == TargetPlatform.iOS) {
+				Padding = new Thickness (20, 20, 20, 20);
+			}
 
             Content = new ScrollView
             {
