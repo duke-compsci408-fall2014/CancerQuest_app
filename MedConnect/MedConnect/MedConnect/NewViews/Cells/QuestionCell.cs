@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms; 
+using MedConnect.Models;
 
 namespace MedConnect.NewViews
 {
@@ -43,12 +44,19 @@ namespace MedConnect.NewViews
                 HeightRequest = 60
             };
 
+			var addQuestionTapRecognizer = new TapGestureRecognizer();
+			addQuestionTapRecognizer.Tapped += (s, e) =>
+			{
+				var question = BindingContext as Question;
+				HandleAddLibrary(question.ID);
+			};
+			image.GestureRecognizers.Add(addQuestionTapRecognizer);
+
             var textLayout = new StackLayout()
             {
                 Orientation = StackOrientation.Vertical,
                 VerticalOptions = LayoutOptions.Start,
                 BackgroundColor = Color.FromHex("#FFFFFF"),
-                //WidthRequest = 320,
                 Children = { textLabel, ratingLabel, tagsLabel }
             };
 
@@ -89,6 +97,12 @@ namespace MedConnect.NewViews
             
 			View = mainLayout; 
         }
+
+		public async void HandleAddLibrary(int questionID)
+		{
+			App.MasterPage.MainView.postLibrary(questionID);
+			App.MasterPage.Detail.DisplayAlert("Question Added", "Question added to your library!", "OK");
+		}
 			
 		protected override void OnBindingContextChanged ()
 		{

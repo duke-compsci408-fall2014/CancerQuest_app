@@ -21,22 +21,22 @@ namespace MedConnect.NewViews
      */
     public class MasterPage : MasterDetailPage
     {
-        MainViewModel _mainViewModel; 
-
 		public MainViewModel MainView {
 			get {
-				return _mainViewModel;
+				return App.Model;
 			}
 			set {
-				_mainViewModel = value;
+				App.Model = value;
 				OnPropertyChanged("MainView");
 			}
 		}
 
-        public MasterPage(MainViewModel mainViewModel)
-        {
-            _mainViewModel = mainViewModel; 
+        public MasterPage()
+        {            
+			this.Master = this.getMasterContentPage ();
+			this.Detail = new LandingPage ();
         }
+
 
         public ContentPage getMasterContentPage()
         {
@@ -94,7 +94,7 @@ namespace MedConnect.NewViews
 
             homePageButton.Clicked += (sender, args) =>
             {
-                Detail = new NavigationPage(new LandingPage(this));
+                Detail = new NavigationPage(new LandingPage());
                 IsPresented = false;
             };
 
@@ -106,25 +106,25 @@ namespace MedConnect.NewViews
 
             discoverPageButton.Clicked += (sender, args) =>
             {
-                Detail = new NavigationPage(new RecommendedPage(this));
+                Detail = new NavigationPage(new RecommendedPage());
                 IsPresented = false;
             };
 
             libraryPageButton.Clicked += (sender, args) =>
             {
-                Detail = new NavigationPage(new LibraryPage(this));
+                Detail = new NavigationPage(new LibraryPage());
                 IsPresented = false;
             };
 
             visitsPageButton.Clicked += (sender, args) =>
             {
-				Detail = new NavigationPage(new VisitsPage(this));
+				Detail = new NavigationPage(new VisitsPage());
                 IsPresented = false;
             };
 
             settingsPageButton.Clicked += (sender, args) =>
             {
-                Detail = new NavigationPage(new SettingsPage(this));
+                Detail = new NavigationPage(new SettingsPage());
                 IsPresented = false; 
             };
 

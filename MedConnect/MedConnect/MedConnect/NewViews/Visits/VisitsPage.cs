@@ -11,11 +11,9 @@ namespace MedConnect.NewViews.Visits
 {
     public class VisitsPage : ContentPage
     {
-		private MasterPage _masterPage;
-		public VisitsPage(MasterPage masterPage)
+		public VisitsPage()
         {
             this.Appearing += visitPage_Appearing;
-			_masterPage = masterPage;
 
             BackgroundColor = Color.FromHex("#C1C1C1");
             ObservableCollection<Visit> Questions = new ObservableCollection<Visit>();
@@ -32,7 +30,7 @@ namespace MedConnect.NewViews.Visits
             Questions.Add(q1);
             Questions.Add(q2);
 
-			this.BindingContext = _masterPage.MainView._visitsViewModel;
+			this.BindingContext = App.MasterPage.MainView._visitsViewModel;
 
             var listView = new ListView();
             listView.HasUnevenRows = true;
@@ -45,8 +43,10 @@ namespace MedConnect.NewViews.Visits
 				var visit = args.Item as Visit;
 				if (visit == null) return;
 
-				ContentPage visitPage = new VisitQuestionsPage(_masterPage, visit);
-				_masterPage.setDetailPage(visitPage); 
+				var modalPage = new VisitQuestionsPage(visit);
+				Navigation.PushModalAsync(modalPage);
+				App.MasterPage.setDetailPage(modalPage); 
+
 				listView.SelectedItem = null;
 			};
 
@@ -58,7 +58,7 @@ namespace MedConnect.NewViews.Visits
 
             addVisitsButton.Clicked += (sender, args) =>
             {
-				var modalPage = new AddVisitPage(_masterPage);
+				var modalPage = new AddVisitPage();
 				Navigation.PushModalAsync(modalPage);
             };
 
@@ -69,10 +69,18 @@ namespace MedConnect.NewViews.Visits
                 Children = { header, listView, addVisitsButton}
             };
         }
-	
+
+		public async void HandleAddVisit()
+		{
+			int userID = App.Model.User.id;
+            // no name
+			//App.MasterPage.MainView._visitsViewModel.createVisit (userID);
+			await DisplayAlert("Visit Created", "New Visit created!", "OK");
+		}
+
         private void visitPage_Appearing(object sender, EventArgs args)
         {
-            _masterPage.MainView.getVisits();
+            App.MasterPage.MainView.getVisits();
         }
     }
 }

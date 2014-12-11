@@ -9,13 +9,10 @@ namespace MedConnect.NewViews
 {
     public class SettingsPage : ContentPage 
     {
-        MasterPage _masterPage; 
-
-        public SettingsPage(MasterPage masterPage)
+        
+        public SettingsPage()
         {
-            _masterPage = masterPage; 
-
-            var header = new HeaderElement("Settings");
+			var header = new HeaderElement("Settings");
 
             var passwordEntry = new Entry
             {

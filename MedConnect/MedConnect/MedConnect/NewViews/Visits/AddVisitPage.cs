@@ -6,13 +6,9 @@ namespace MedConnect.NewViews
 {
 	public class AddVisitPage : ContentPage 
 	{
-		MasterPage _masterPage; 
-
-		public AddVisitPage (MasterPage masterPage)
+		public AddVisitPage ()
 		{
-			_masterPage = masterPage; 
-
-			var header = new HeaderElement ("Add New Visit"); 
+            var header = new HeaderElement ("Add New Visit"); 
 
 			var visitNameEntry = new Entry
 			{
@@ -55,8 +51,8 @@ namespace MedConnect.NewViews
 
 		public async void HandleAddVisit(string visitName)
 		{
-			int userID = _masterPage.MainView.User.id;
-			_masterPage.MainView._visitsViewModel.createVisit (userID, visitName);
+			int userID = App.Model.User.id;
+            App.Model._visitsViewModel.createVisit(userID, visitName);
 			await DisplayAlert("Visit Created", "New Visit created!", "OK");
 		}
 	}

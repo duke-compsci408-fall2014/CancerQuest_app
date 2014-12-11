@@ -10,13 +10,11 @@ namespace MedConnect.NewViews
 {
     public class EditVisitQuestionPage : ContentPage 
     {
-		private MasterPage _masterPage;
 		private int _questionID;
         private int _visitID;
 
-		public EditVisitQuestionPage(MasterPage masterPage, int questionID, int visitID)
+		public EditVisitQuestionPage(int questionID, int visitID)
 		{
-			_masterPage = masterPage;
 			_questionID = questionID;
             _visitID = visitID;
 
@@ -58,8 +56,8 @@ namespace MedConnect.NewViews
             removeQuestionButton.Clicked += (sender, args) =>
             {
                 System.Diagnostics.Debug.WriteLine("Question removed");
-                int userID = _masterPage.MainView.User.id;
-                _masterPage.MainView._visitsViewModel.removeVisitQuestion(userID,_visitID,_questionID);
+                int userID = App.MasterPage.MainView.User.id;
+                App.MasterPage.MainView._visitsViewModel.removeVisitQuestion(userID,_visitID,_questionID);
                 
                 Navigation.PopModalAsync();
             };
@@ -70,13 +68,13 @@ namespace MedConnect.NewViews
 			helpfulButton.Clicked += (sender, args) =>
 			{
 				System.Diagnostics.Debug.WriteLine("User voted question helpful");
-				_masterPage.MainView.rateQuestion(_questionID,"Helpful");
+				App.MasterPage.MainView.rateQuestion(_questionID,"Helpful");
 				Navigation.PopModalAsync();
 			};
 
 			notHelpfulButton.Clicked += (sender, args) =>
 			{
-				_masterPage.MainView.rateQuestion(_questionID, "Unhelpful");
+				App.MasterPage.MainView.rateQuestion(_questionID, "Unhelpful");
 				Navigation.PopModalAsync();
 				System.Diagnostics.Debug.WriteLine("User voted question unhelpful");
 			};

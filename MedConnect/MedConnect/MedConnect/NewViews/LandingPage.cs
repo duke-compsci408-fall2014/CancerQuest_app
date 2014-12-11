@@ -8,18 +8,15 @@ using MedConnect.NewViews.Visits;
 namespace MedConnect.NewViews
 {
     public class LandingPage : ContentPage 
-    {
-        MasterPage _masterPage;
-
+    {        
         /* 
          * The LandingPage is the first page that users see upon logging in.
          * It presents the user with the basic workflow of the app - discovering questions, adding them to a library, creating visits
          * Each LandingCell is a clickable UI item that takes the user to the appropriate page 
          */ 
-        public LandingPage(MasterPage masterPage) 
+        public LandingPage() 
         {
-			Title = "Home";
-            _masterPage = masterPage; 
+			Title = "Home";            
             var header = new HeaderElement("Home");
             var discoverEntry = new LandingCell("Discover", "Find new questions", "icon_search.png", "#9ee4e7");
             var libraryEntry = new LandingCell("My Library", "Save questions to your library", "icon_library.png", "#9ee4e7");
@@ -28,24 +25,24 @@ namespace MedConnect.NewViews
             var discoverTapRecognizer = new TapGestureRecognizer();
             discoverTapRecognizer.Tapped += (s, e) =>
             {
-				ContentPage recommendedPage = new RecommendedPage(_masterPage);
-				_masterPage.setDetailPage(recommendedPage); 
+				ContentPage recommendedPage = new RecommendedPage();
+				App.MasterPage.setDetailPage(recommendedPage); 
             };
             discoverEntry.GestureRecognizers.Add(discoverTapRecognizer);
 
             var libraryTapRecognizer = new TapGestureRecognizer();
             libraryTapRecognizer.Tapped += (s, e) =>
             {
-				ContentPage libraryPage = new LibraryPage(_masterPage);
-				_masterPage.setDetailPage(libraryPage); 
+				ContentPage libraryPage = new LibraryPage();
+				App.MasterPage.setDetailPage(libraryPage); 
             };
             libraryEntry.GestureRecognizers.Add(libraryTapRecognizer);
 
             var visitsTapRecognizer = new TapGestureRecognizer();
             visitsTapRecognizer.Tapped += (s, e) =>
             {
-				ContentPage visitsPage = new VisitsPage(_masterPage);
-				_masterPage.setDetailPage(visitsPage); 
+				ContentPage visitsPage = new VisitsPage();
+				App.MasterPage.setDetailPage(visitsPage); 
             };
             visitsEntry.GestureRecognizers.Add(visitsTapRecognizer);
 

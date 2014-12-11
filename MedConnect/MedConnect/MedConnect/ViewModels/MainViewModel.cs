@@ -15,7 +15,6 @@ namespace MedConnect.ViewModels
 	public class MainViewModel : ViewModel
 	{
 		private WebService _webService;
-		private static User _currentUser;
 		public VisitsViewModel _visitsViewModel;
         public SearchViewModel _searchViewModel;
         public TagTranslator _tagTranslator;
@@ -39,11 +38,11 @@ namespace MedConnect.ViewModels
 		{
 			get
 			{
-				return _currentUser;
+				return App.User;
 			}
 			set
 			{
-				_currentUser = value;
+				App.User = value;
 				OnPropertyChanged("User");
 			}
 		}
@@ -83,13 +82,12 @@ namespace MedConnect.ViewModels
 		public async Task<User> authenticate(string username, string password)
         {
 			var responseUser = await _webService.login (username, password);
-			//System.Diagnostics.Debug.WriteLine (_currentUser);
 			User = responseUser;
 			if (User != null) {
 				_libraryQuestions = User.Questions; 
+				_webService.setSession (User.session);
+				getSortedQuestions ("popular");
 			}
-			_webService.setSession (User.session);
-			getSortedQuestions ("popular");
 			return User;
         }
 
@@ -114,7 +112,7 @@ namespace MedConnect.ViewModels
 		public async void getLibraryQuestions()
 		{
 			LibraryQuestions.Clear();
-			var tempQ = await _webService.getLibraryQuestions(_currentUser.id);
+			var tempQ = await _webService.getLibraryQuestions(User.id);
 			LibraryQuestions = tempQ;
 			_webService.addQuestionInfo (LibraryQuestions);
 
@@ -126,12 +124,12 @@ namespace MedConnect.ViewModels
         }
 		public void getVisits()
 		{
-			_visitsViewModel.getVisits (_currentUser.id);
+			_visitsViewModel.getVisits (User.id);
 		}
 
 		public async void postLibrary(int questionID)
 		{
-			var response = await _webService.postLibrary(questionID, _currentUser.id);
+			var response = await _webService.postLibrary(questionID, User.id);
 		}
 		public async void postVisitQuestion(int userID, int questionID, int visitID)
 		{
@@ -146,12 +144,12 @@ namespace MedConnect.ViewModels
 		}
         public void removeLibraryQuestion(int questionID)
         {
-            _webService.removeLibraryQuestion(questionID, _currentUser.id);
+			_webService.removeLibraryQuestion(questionID, User.id);
         }
 
 	    public void rateQuestion(int questionID, string rating)
 	    {
-	        _webService.rateQuestion(_currentUser.id, questionID, rating);
+			_webService.rateQuestion(User.id, questionID, rating);
 	    }
 	}
 }

@@ -10,16 +10,13 @@ namespace MedConnect.NewViews
 {
     public class MostPopularPage : ContentPage 
     {
-        MasterPage _masterPage; 
-
-        public MostPopularPage(MasterPage masterPage)
-        {
-            _masterPage = masterPage;
+        public MostPopularPage()
+        {            
             Title = "Most Popular Questions";
             BackgroundColor = Color.FromHex("#C1C1C1");
 
-            _masterPage.MainView.getSortedQuestions("popular");
-            this.BindingContext = _masterPage.MainView;
+			this.BindingContext = App.Model;
+			App.Model.getSortedQuestions ("popular");            
 
             var listView = new ListView();
             listView.HasUnevenRows = true;

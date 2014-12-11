@@ -10,31 +10,20 @@ using Xamarin.Forms;
 namespace MedConnect.NewViews
 {
     public class LibraryPage : ContentPage
-    {
-        MasterPage _masterPage; 
+    {     
+		StackLayout _mainView; 
 
-        public LibraryPage(MasterPage masterPage)
-        {
-            this.Appearing += LibraryPage_Appearing;
-
-            _masterPage = masterPage; 
+        public LibraryPage()
+        {            
             BackgroundColor = Color.FromHex("#C1C1C1");
 
-			this.BindingContext = _masterPage.MainView;
+			this.BindingContext = App.MasterPage.MainView;
 
             var listView = new ListView();
             listView.HasUnevenRows = true;
 			listView.SetBinding (ListView.ItemsSourceProperty, new Binding ("LibraryQuestions"));
-            listView.ItemTemplate = new DataTemplate(typeof(QuestionCell));
-            listView.ItemTapped += (sender, args) =>
-            {
-                var question = args.Item as Question;
-                if (question == null) return;
+            listView.ItemTemplate = new DataTemplate(typeof(LibraryCell));
 
-                var modalPage = new EditQuestionPage(_masterPage, question.ID);
-                Navigation.PushModalAsync(modalPage);
-                listView.SelectedItem = null;
-            };
             var header = new HeaderElement("My Library");
 
             var addQuestionButton = new Button
@@ -44,7 +33,7 @@ namespace MedConnect.NewViews
 
             addQuestionButton.Clicked += (sender, args) =>
             {
-				var modalPage = new AddQuestionPage(_masterPage.MainView);
+				var modalPage = new AddQuestionPage();
                 Navigation.PushModalAsync(modalPage);
                 listView.SelectedItem = null;
             };
@@ -55,11 +44,14 @@ namespace MedConnect.NewViews
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 Children = { header, listView, addQuestionButton }
             };
+					
+			this.Appearing += LibraryPage_Appearing;
         }
 
         void LibraryPage_Appearing(object sender, EventArgs e)
         {
-            _masterPage.MainView.getLibraryQuestions();
+            App.MasterPage.MainView.getLibraryQuestions();
+			//this.Content = _mainView; 
         }
 
         

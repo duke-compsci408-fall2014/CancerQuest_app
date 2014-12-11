@@ -15,37 +15,21 @@ namespace MedConnect.NewViews
      */
     public class RecommendedPage : ContentPage 
     {
-        MasterPage _masterPage;
-
-        public RecommendedPage(MasterPage masterPage)
-        {
-            _masterPage = masterPage;
+        
+        public RecommendedPage()
+        {            
             Title = "Recommended";
             BackgroundColor = Color.FromHex("#C1C1C1");
-            var tabs = new TabsHeader(_masterPage);
+            var tabs = new TabsHeader();
             
-			_masterPage.MainView.getRecQuestions();	
+			App.MasterPage.MainView.getRecQuestions();	
 
-			this.BindingContext = _masterPage.MainView;
+			this.BindingContext = App.MasterPage.MainView;
 
             var listView = new ListView(); 
-
-			/*if (Device.OS == TargetPlatform.iOS) {
-				listView.HasUnevenRows = false; 
-			} else {
-				listView.HasUnevenRows = true;
-			}*/
 			listView.HasUnevenRows = true; 
 			listView.SetBinding (ListView.ItemsSourceProperty, new Binding ("RecommendedQuestions"));
-           
             listView.ItemTemplate = new DataTemplate(typeof(QuestionCell));
-            listView.ItemTapped += (sender, args) =>
-            {
-                var question = args.Item as Question;
-                if (question == null) return;
-				HandleAddLibrary(question.ID);
-                listView.SelectedItem = null;
-            };
 
             var header = new HeaderElement("Recommended Questions");
 
@@ -57,12 +41,11 @@ namespace MedConnect.NewViews
             };
 
 			Content = mainLayout; 
-            
         }
 
 		public async void HandleAddLibrary(int questionID)
 		{
-			_masterPage.MainView.postLibrary(questionID);
+			App.MasterPage.MainView.postLibrary(questionID);
 			await DisplayAlert("Question Added", "Question added to your library!", "OK");
 		}
     }

@@ -19,6 +19,8 @@ namespace MedConnect
 			var propertyName = ((MemberExpression)projection.Body).Member.Name;
 			PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
+
+		public bool IsLoading { get; set; }
 	}
 }
 

@@ -9,12 +9,9 @@ namespace MedConnect.NewViews
 {
     public class TabsHeader : StackLayout
     {
-        MasterPage _masterPage;
-
-        public TabsHeader(MasterPage masterPage)
+        
+        public TabsHeader()
         {
-            _masterPage = masterPage; 
-
             var recommendedLabel = new Label
             {
                 Text = "Recommended",
@@ -33,8 +30,8 @@ namespace MedConnect.NewViews
             var recommendedTapRecognizer = new TapGestureRecognizer();
             recommendedTapRecognizer.Tapped += (s, e) =>
             {
-				ContentPage recommended = new RecommendedPage(_masterPage);
-				_masterPage.setDetailPage(recommended); 
+				ContentPage recommended = new RecommendedPage();
+				App.MasterPage.setDetailPage(recommended); 
             };
             recommendedTab.GestureRecognizers.Add(recommendedTapRecognizer);
 
@@ -55,8 +52,8 @@ namespace MedConnect.NewViews
             var browseTapRecognizer = new TapGestureRecognizer();
             browseTapRecognizer.Tapped += (s, e) =>
             {
-				ContentPage browsePage = new BrowsePage(_masterPage);
-				_masterPage.setDetailPage(browsePage); 
+				ContentPage browsePage = new BrowsePage();
+				App.MasterPage.setDetailPage(browsePage); 
             };
             browseTab.GestureRecognizers.Add(browseTapRecognizer);
 
@@ -77,8 +74,8 @@ namespace MedConnect.NewViews
             var searchTapRecognizer = new TapGestureRecognizer();
             searchTapRecognizer.Tapped += (s, e) =>
             {
-				ContentPage searchPage = new SearchPage(_masterPage);
-				_masterPage.setDetailPage(searchPage); 
+				ContentPage searchPage = new SearchPage();
+				App.MasterPage.setDetailPage(searchPage); 
             };
             searchTab.GestureRecognizers.Add(searchTapRecognizer);
 

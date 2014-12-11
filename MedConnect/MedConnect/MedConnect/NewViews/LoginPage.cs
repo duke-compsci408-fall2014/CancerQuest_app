@@ -12,18 +12,15 @@ namespace MedConnect.NewViews
      * The LoginPage allows users to login to the app if they already have an account
      * If not, users can use the page to access the SignupPage, which is used to create a new account 
      */
-    public class LoginPage : ContentPage 
+	public class LoginPage : BaseContentPage 
     {
-        MainViewModel _mainViewModel; 
-		MasterPage mp;
-
-        private StackLayout loginForm;
-        private StackLayout loginView;
-
+		public LoginViewModel ViewModel {
+			get { return BindingContext as LoginViewModel; }
+			set { }
+		}
         public LoginPage()
         {
-            _mainViewModel = new MainViewModel();
-            mp = new MasterPage(_mainViewModel);
+			BindingContext = new LoginViewModel();
 
             var image = new Image
             {
@@ -38,6 +35,7 @@ namespace MedConnect.NewViews
                 BackgroundColor = Color.FromHex("C1C1C1"),
                 VerticalOptions = LayoutOptions.Center, 
             };
+			usernameEntry.SetBinding (Entry.TextProperty, "Username", BindingMode.TwoWay);
 
             var passwordEntry = new Entry
             {
@@ -46,6 +44,7 @@ namespace MedConnect.NewViews
                 VerticalOptions = LayoutOptions.Center, 
                 IsPassword = true
             };
+			passwordEntry.SetBinding (Entry.TextProperty, "Password", BindingMode.TwoWay);
 
             var loginButton = new Button
             {
@@ -61,11 +60,11 @@ namespace MedConnect.NewViews
                 BackgroundColor = Color.FromHex("#76ccd0")
             };
 
-			loginForm = new StackLayout {
+			var loginForm = new StackLayout {
 				Children = { usernameEntry, passwordEntry, loginButton, signupButton }
 			};
 
-			Content = new ScrollView {
+			var content = new ScrollView {
 				Content = new StackLayout
 	            {
 	                Children = { image, loginForm },
@@ -74,23 +73,20 @@ namespace MedConnect.NewViews
 	                BackgroundColor = Color.FromHex("#FFFFFF")
 	            }
 			};
-
-            loginView = (StackLayout)((ScrollView)Content).Content;
+			Content = content;
+			//Content = CreateLoadingIndicatorAbsoluteLayout (content);
 
             loginButton.Clicked += (sender, args) =>
             {
-                setLoginForm(
-                    new ActivityIndicator
-                    {
-                        IsRunning = true
-                    }
-                );
+				if (ViewModel.IsLoading) {
+					return;
+				}
+				ViewModel.IsLoading = true;
                 string username = usernameEntry.Text;
                 string password = passwordEntry.Text; 
                 if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
                 {
-					setLoginForm();
-                    DisplayAlert("Error", "Invalid username or password", "OK");
+                    DisplayAlert("Error", "Please enter your username and password", "OK");
                 }
                 else
                 {
@@ -100,34 +96,21 @@ namespace MedConnect.NewViews
 
             signupButton.Clicked += (sender, args) =>
             {
-				Navigation.PushAsync(new SignupPage(mp));
+				Navigation.PushAsync(new SignupPage());
             };
-        }
-
-        private void setLoginForm(View view = null)
-        {
-            if (view == null)
-            {
-                view = loginForm;
-            }
-            loginView.Children[1] = view;
         }
 
 		private async void HandleLogin(String username, String password) 
         {
-			mp.Master = mp.getMasterContentPage();
-			mp.Detail = new LandingPage(mp);
-			await mp.MainView.authenticate(username,password);
-			if(mp.MainView.User != null) {
-				//System.Diagnostics.Debug.WriteLine (mp.MainView.User);
-				await Navigation.PushModalAsync(mp);
-				mp.MainView.getLibraryQuestions ();
-                setLoginForm();
+			var result = await App.Model.authenticate(username,password);
+			ViewModel.IsLoading = false;
+
+			if(result != null) {
+				App.Model.getLibraryQuestions ();               
+				await Navigation.PopModalAsync();
 			}
             else
-            {
-                setLoginForm();
-				//System.Diagnostics.Debug.WriteLine ("fag muffin to the rescue");
+            {                
                 await DisplayAlert("Error", "Invalid username or password", "OK");
             }
 		}

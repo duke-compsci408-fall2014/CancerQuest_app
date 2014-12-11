@@ -9,13 +9,12 @@ using Xamarin.Forms;
 namespace MedConnect.NewViews
 {
     public class EditQuestionPage : ContentPage 
-    {
-        MasterPage _masterPage;
+    {        
         int _questionID;
 
         public EditQuestionPage(MasterPage masterPage, int questionID)
         {
-            _masterPage = masterPage;
+            App.MasterPage = masterPage;
             _questionID = questionID;
 
             var rateQuestionLabel = new Label
@@ -52,8 +51,8 @@ namespace MedConnect.NewViews
             {
                 Text = "Cancel"
             };
-			_masterPage.MainView.getVisits();
-            this.BindingContext = _masterPage.MainView._visitsViewModel;
+			App.MasterPage.MainView.getVisits();
+            this.BindingContext = App.MasterPage.MainView._visitsViewModel;
 
             var listView = new ListView();
             listView.HasUnevenRows = true;
@@ -74,27 +73,27 @@ namespace MedConnect.NewViews
             removeQuestionButton.Clicked += (sender, args) =>
             {
                 System.Diagnostics.Debug.WriteLine("Question removed");
-                _masterPage.MainView.removeLibraryQuestion(_questionID);
+                App.MasterPage.MainView.removeLibraryQuestion(_questionID);
                 Navigation.PopModalAsync();
             };
 
             cancelButton.Clicked += (sender, args) =>
             {
-                //_masterPage.Master = _masterPage.getMasterContentPage();
-                //_masterPage.Detail = new LibraryPage(_masterPage);
+                //App.MasterPage.Master = App.MasterPage.getMasterContentPage();
+                //App.MasterPage.Detail = new LibraryPage(App.MasterPage);
                 Navigation.PopModalAsync();
             };
 
             helpfulButton.Clicked += (sender, args) =>
             {
                 System.Diagnostics.Debug.WriteLine("User voted question helpful");
-                _masterPage.MainView.rateQuestion(_questionID,"Helpful");
+                App.MasterPage.MainView.rateQuestion(_questionID,"Helpful");
                 Navigation.PopModalAsync();
             };
 
             notHelpfulButton.Clicked += (sender, args) =>
             {
-                _masterPage.MainView.rateQuestion(_questionID, "Unhelpful");
+                App.MasterPage.MainView.rateQuestion(_questionID, "Unhelpful");
                 Navigation.PopModalAsync();
                 System.Diagnostics.Debug.WriteLine("User voted question unhelpful");
             };
@@ -124,9 +123,9 @@ namespace MedConnect.NewViews
         {
             //use _questionID;
             
-			int userID = _masterPage.MainView.User.id;
+			int userID = App.MasterPage.MainView.User.id;
 			System.Diagnostics.Debug.WriteLine(userID + " qid: " + _questionID + " visitID: " + visitID);
-			_masterPage.MainView.postVisitQuestion (userID, _questionID, visitID);
+			App.MasterPage.MainView.postVisitQuestion (userID, _questionID, visitID);
 			await DisplayAlert("Question Added", "Question added to your visit!", "OK");
         }
 
